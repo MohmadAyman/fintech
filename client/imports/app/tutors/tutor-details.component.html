@@ -1,0 +1,61 @@
+  <div *ngIf="tutor">
+    <label>Name</label>
+      <input [disabled]="!isMe" [(ngModel)]="tutor.name"></input><br>
+    <label>Hourly rating</label>
+      <input [disabled]="!isMe" [(ngModel)]="tutor.hourly_rating"></input><br>
+    <label>Language</label>
+      <input [disabled]="!isME" [(ngModel)]="tutor.language"></input><br>
+    <label>Classes</label>
+
+  <div *ngIf="isMe">
+      <div class="card-columns">
+      <div class="card" *ngFor="let request of requests| async">
+        <img class="card-img-top" src="background.png" alt="Card image cap" style="width:250px;height:200px;">
+        <div class="card-block">
+          <h4 class="card-title">{{request.startTime}}</h4></a>
+          <a [routerLink]="['/tutors', tutor._id]" class="card-text" >{{request.startDate}}</a>
+          <br>
+          {{request.language}}
+          <br>
+          <button type="button" class="btn btn-primary" (click)="addClass(request)">Accept Class</button>
+        </div>
+      </div>
+      </div>
+  </div>
+    <!--<ul>
+    <li*ngFor="let class of tutorClasses| async">
+          <ul>
+          <a [routerLink]="['/class', class._id]">{{class.name}}</a>
+          
+          <p>{{class.language}}</p>
+          <div *ngIf="class.active">
+            <p>Class is Currently Active</p>
+          </div>
+          </li>
+        </ul>
+    </li>
+    </ul>-->
+    <div *ngIf="user">
+    <form action={{mailtoTutor}} method="post" enctype="text/plain">
+    <label> Contact tutor: </label>
+    Your Name:<br>
+      <input type="text" name="name"><br>
+      <input [hidden]="true" type="text" [(ngModel)]="user.emails[0].address" name="mail"><br>
+      Message:<br>
+      <input type="text" name="comment" size="50"><br><br>
+      <input type="submit" value="Send">
+      <input type="reset" value="Reset">
+    </form>
+    </div>
+  </div>
+
+  <div class="card-columns">
+  <div class="card" *ngFor="let class of tutorClasses| async">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <a [routerLink]="['/tutors', tutor._id]"><h4 class="card-title">{{tutor.name}}</h4></a>
+      <a [routerLink]="['/tutors', tutor._id]" class="card-text" >{{tutor.language}}</a>
+            <button (click)="removeTutor(tutor)">X</button>
+    </div>
+  </div>
+</div>

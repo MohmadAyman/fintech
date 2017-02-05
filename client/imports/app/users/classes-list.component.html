@@ -1,0 +1,15 @@
+
+    <ul>
+    <li *ngFor="let class of classes| async">
+          <ul>
+          <a [routerLink]="['/class', class._id]">{{class.name}}</a>
+          <!--<li *ngFor="let language of tutor.languages">-->
+            <!--<p>{{language}}</p>-->
+            <!--Add Class tutuor's name' later using pipe-->
+            <p>{{class.schedule}}</p>
+            <p>{{class.language}}</p>
+            <button (click)="joinClass(class)">J</button>
+          </li>
+        </ul>
+    </li>
+  </ul>

@@ -1,0 +1,18 @@
+<md-toolbar color="primary">
+  <a routerLink="/" class="md-title">Quran Tutor</a>
+  <span class="fill-remaining-space"></span>
+    <!--<a md-button [routerLink]="['/tutors']" >Tutors list</a>-->
+  <div [hidden]="user">
+    <a md-button [routerLink]="['/login']" >Login</a>
+    <a md-button [routerLink]="['/signup']">Sign up</a>
+  </div>
+  <div [hidden]="!user">
+   <a md-button [routerLink]="['/classesList']">Your classes</a>  
+
+    
+    <!--<a md-button [routerLink]="['/active-classes']">Active classes</a>-->
+    <button md-button (click)="logout()">Logout</button>
+  </div>
+  <span>{{ user | displayName }}</span>
+</md-toolbar>
+<router-outlet></router-outlet>

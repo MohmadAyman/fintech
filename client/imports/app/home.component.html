@@ -1,0 +1,16 @@
+<h6 [hidden]="tutor"> Enter the date and time of the class and choose the language you want the class in 
+  and we will match you with a tutor for live lessons.</h6> 
+<!--<div *ngIf"!tutor">-->
+<a md-button [hidden]="tutor" [routerLink]="['/request']" ><button type="button" class="btn btn-primary">Request a Class</button></a>
+<a md-button [hidden]="tutor" [routerLink]="['/avilable-classes']" ><button type="button" class="btn btn-success">Join a Class</button></a>
+<!--</div>-->
+<div *ngIf="tutor">
+  <h6> Have a free time?, Add a class, teach people, earn money</h6>
+<a md-button [routerLink]="['/addClass']" ><button type="button" class="btn btn-primary">Add a new Class</button></a>
+</div>
+<br>  
+<h6>A list of our avilable tutors and the languages the teach in </h6>
+    <tutors-list></tutors-list>
+<!--<a md-button [routerLink]="['/tutors']" ><button type="button" class="btn btn-primary">Tutors</button></a>-->
+
+<!--<addClass-Userform></addClass-Userform>-->

@@ -1,0 +1,12 @@
+<form *ngIf="class" (submit)="saveClass()">
+  <label>Name</label>
+  <input type="text" [disabled]="!isOwner" [(ngModel)]="class.name" name="name">
+
+  <label>Language</label>
+  <input type="text" [disabled]="!isOwner" [(ngModel)]="class.language" name="language">
+
+  <button (click)="enroll()">Ask for Enrollment</button>
+ 
+  <button type="submit">Save</button>
+  <a [routerLink]="['/']">Cancel</a>
+</form>

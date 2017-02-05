@@ -1,0 +1,14 @@
+<form [formGroup]="addForm" (ngSubmit)="addTutor()">
+  
+  <label>Tutor Name</label>
+  <input type="text" formControlName="name">
+ 
+  <label>Languages</label>
+  <input type="text" formControlName="language">
+
+  <label>rate</label>
+  <input type="text" formControlName="hourly_rating">
+
+  
+  <button>Add</button>
+</form>

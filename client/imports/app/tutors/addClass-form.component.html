@@ -1,0 +1,28 @@
+<form [formGroup]="addForm" (ngSubmit)="addClass()">
+  <label for="language" class="col-2 col-form-label">Language</label>
+    <div class="col-10">
+  <input type="text" class="form-control" formControlName="language" id="language">
+    </div>
+  
+  <label for="example-date" class="col-2 col-form-label">Date</label>
+  <div class="col-10">
+    <input class="form-control" formControlName="startDate" type="date" value="2011-08-19" id="example-date">
+  </div>
+
+  <label for="example-datetime-local-input" class="col-2 col-form-label">Time</label>
+  <div class="col-10">
+    <input class="form-control" formControlName="startTime" type="time" value="13:45:00" id="example-datetime-local-input">
+  </div>
+
+    <!--<input type="text" formControlName="rating"><br>-->
+  <!--<label>Start</label>
+  <input type="text" formControlName="startTime">
+
+  <label>End</label>
+  <input type="text" formControlName="endTime">  -->
+<!--<template name="addClass-form">
+  <input id="whatever" class="timepicker" type="text" name="startTime">
+<template name="addClass-form">-->
+
+  <button>Add</button>
+</form>

@@ -1,0 +1,51 @@
+@import "{}/node_modules/bootstrap/scss/bootstrap.scss";
+@import "{}/node_modules/angular2-meteor-accounts-ui/build/login-buttons.scss";
+
+$color1 : #2F2933;
+$color2 : #01A2A6;
+$color3 : #29D9C2;
+$color4 : #BDF271;
+$color5 : #FFFFA6;
+$color6 : #2F2933;
+$color7 : #FF6F69;
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #f8f8f8;
+  font-family: 'Muli', sans-serif;
+}
+
+.sebm-google-map-container {
+  width: 450px;
+  height: 450px;
+}
+
+.navbar {
+  background-color: #ffffff;
+  border-bottom: #eee 1px solid;
+  color: $color3;
+  font-family: 'Muli', sans-serif;
+  a {
+    color: $color3;
+    text-decoration: none !important;
+  }
+
+  .navbar-right-container {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+  }
+}
+
+.md-whiteframe-z2 {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+@import "./imports/material-layout";

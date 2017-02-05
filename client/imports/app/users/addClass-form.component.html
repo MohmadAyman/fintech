@@ -1,0 +1,43 @@
+<h3> Join a Quran class with a proffessonal teatcher </h3>
+
+<form [formGroup]="addForm" (ngSubmit)="addClass()"> 
+  
+ 
+  <label for="language" class="col-2 col-form-label">Language</label>
+    <div class="col-10">
+  <input type="text" class="form-control" formControlName="language" id="language">
+    </div>
+  
+  <label for="example-date" class="col-2 col-form-label">Date</label>
+  <div class="col-10">
+    <input class="form-control" formControlName="startDate" type="date" value="2011-08-19T13:45:00" id="example-date">
+  </div>
+
+  <label for="example-datetime-local-input" class="col-2 col-form-label">Time</label>
+  <div class="col-10">
+    <input class="form-control" formControlName="startTime" type="time" value="13:45:00" id="example-datetime-local-input">
+  </div>
+
+  <label for="contact-skype-email" class="col-2 col-form-label">*Skype username</label>
+    <div class="col-10">
+      <input class="form-control" type="email" id="contact-skype-email">
+    </div>
+
+  <label for="contact-google-email" class="col-2 col-form-label">*Gmail</label>
+    <div class="col-10">
+      <input class="form-control" type="email" id="contact-google-email">
+    </div>
+    <br>
+  
+  <label for="comment" class="col-2 col-form-label">comment (optional)</label>
+   <div class="col-10">
+  <input type="text" class="form-control" formControlName="comment" id="description">
+   </div>
+
+<!--<p>-->
+<p style="size: 8">   *currently our video call servise is not avilable, so we use either of skype or google hangouts.</p>
+<h6>Enter either or both of them</h6>
+
+  <br>
+<button type="button" class="btn btn-primary" (click)="addClass()">Add</button>
+</form>

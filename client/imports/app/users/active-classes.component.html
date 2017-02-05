@@ -1,0 +1,13 @@
+<div>
+    Avilalable Classes:
+      <div class="card-columns">
+        <div class="card" *ngFor="let class of classes| async">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-block">
+        <a [routerLink]="['/class', class._id]"><h4 class="card-title">{{class.startTime}}</h4></a>
+        <h6>{{class.startDate}}</h6>
+        <p class="card-text"><small class="text-muted">{{class.language}}</small></p>
+        </div>
+    </div>
+    </div>
+</div>
