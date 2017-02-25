@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   error: string;
   tutorId: string;
   tutor: Tutor;
+  subscribed: boolaen;
   tutorSub: Subscription;
 
   constructor(private router: Router, private zone: NgZone, private formBuilder: FormBuilder) {}
@@ -40,7 +41,9 @@ export class LoginComponent implements OnInit {
           this.zone.run(() => {
             this.error = err;
           });
+          this.subscribed= false;
         } else {
+          this.subscribed= true;
           this.tutorSub.subscribe(() => {
             this.tutor = Tutors.findOne({userId:{$eq:Meteor.userId()}});
             if(this.tutor){
@@ -56,6 +59,7 @@ export class LoginComponent implements OnInit {
     }
   }
   ngOnDestroy() {
-    this.tutorSub.unsubscribe();
+    if(this.subscribed)
+      this.tutorSub.unsubscribe();
   }
 }
