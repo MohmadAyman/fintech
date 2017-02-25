@@ -11,7 +11,7 @@ import template from './app.component.html';
 
 @Component({
   selector: 'app',
-  // styles: [ style ],
+  styles: [ style ],
   template
 })
 @InjectUser('user')
