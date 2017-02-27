@@ -19,7 +19,8 @@ html, body {
 
 body {
   background-color: #f8f8f8;
-  font-family: 'Muli', sans-serif;
+  font-family: 'Muli', monospace;
+  font-style: italic;
 }
 
 .sebm-google-map-container {
@@ -28,12 +29,12 @@ body {
 }
 
 .navbar {
-  background-color: #ffffff;
+  background-color: $color4;
   border-bottom: #eee 1px solid;
-  color: $color3;
+  color: $color1;
   font-family: 'Muli', sans-serif;
   a {
-    color: $color3;
+    color: $color7;
     text-decoration: none !important;
   }
 
@@ -43,9 +44,9 @@ body {
     right: 17px;
   }
 }
-
 .md-whiteframe-z2 {
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
+
 
 @import "./imports/material-layout";

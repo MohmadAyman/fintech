@@ -37,6 +37,23 @@ export class HomeComponent {
     Meteor.logout();
   }
 
+  avilableClasses():void{
+   if (!Meteor.userId()) {
+      alert('You hve to be a user to request a class');
+      window.location.href='/signup';
+      return;
+    }
+    window.location.href = '/avilable-classes';
+  }
+
+  request():void{
+    if (!Meteor.userId()) {
+      alert('You hve to be a user to request a class');
+      window.location.href='/signup';
+      return;
+    }
+    window.location.href = '/request';
+  }
   ngOnDestroy() {
     if(this.tutor){
         this.tutorSub.unsubscribe();

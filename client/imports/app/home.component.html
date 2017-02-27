@@ -24,8 +24,8 @@
 <br>
 
 <!--<div *ngIf"!tutor">-->
-<button [hidden]="tutor" [routerLink]="['/request']" type="button" class="btn btn-primary">Request a Class</button>
-<button [hidden]="tutor" [routerLink]="['/avilable-classes']" type="button" class="btn btn-success">Join a Class</button>
+<button [hidden]="tutor" (click)="request()" type="button" class="btn btn-primary">Request a Class</button>
+<button [hidden]="tutor" (click)="avilableClasses()" type="button" class="btn btn-success">Join a Class</button>
 <!--</div>-->
 <div *ngIf="tutor">
   <h6> Have a free time?, Add a class, teach people, earn money</h6>

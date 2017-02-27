@@ -22,14 +22,20 @@ export class AddClassUserFormComponent implements OnInit{
   }
  
   ngOnInit() {
-    this.addForm = this.formBuilder.group({
-      language: ['', Validators.required],
-      startDate: ['',Validators.required],
-      startTime: ['',Validators.required],
-      comment: [''],
-      userSkype: [''],
-      userGmail: ['']
-    });
+     if (!Meteor.userId()) {
+      alert('You hve to be a user to request a class');
+      window.location.href='/signup';
+      return;
+    }else{
+      this.addForm = this.formBuilder.group({
+        language: ['', Validators.required],
+        startDate: ['',Validators.required],
+        startTime: ['',Validators.required],
+        comment: [''],
+        userSkype: [''],
+        userGmail: ['']
+      });
+    }
   }
 
   addClass(): void {
@@ -38,7 +44,6 @@ export class AddClassUserFormComponent implements OnInit{
       alert('Please log in first');
       return;
     }
-
     
     // TODO check if the user already requested a class
     if (this.addForm.valid) {

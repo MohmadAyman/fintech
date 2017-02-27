@@ -17,7 +17,11 @@ export class AvilableClasses{
   username: string;
   classSub: Subscription;
   ngOnInit() {
-    
+    if (!Meteor.userId()) {
+      alert('You hve to be a user to request a class');
+      window.location.href='/signup';
+      return;
+    }
     this.classSub = MeteorObservable.subscribe('classes').subscribe(() => {
           // console.log('displaying classes');
           // TODO only find classes where a userId doesn't exist.
