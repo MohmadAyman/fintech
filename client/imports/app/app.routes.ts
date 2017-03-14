@@ -6,7 +6,10 @@ import { AddClassUserFormComponent } from './users/addClass-form.component';
 import { TutorsFormComponent } from './tutors/tutors-form.component'; 
 import { MyClassesListComponent } from './tutors/classes-list.component';
 import { ClassDetailsComponent } from './tutors/class-details.component';
+
 import { TutorDetailsComponent } from './tutors/tutor-details.component';
+import { TutorDetailsComponentUser } from './users/tutor-details.component';
+
 import {LoginComponent} from "./auth/login.component";
 import {SignupComponent} from "./auth/singup.component";
 import {RecoverComponent} from "./auth/recover.component";
@@ -15,6 +18,7 @@ import { VideoOneToOneComponent } from './communication/video-one-to-one.compone
 import { HomeComponent } from './home.component';
 import { AvilableClasses } from './users/active-classes.component';
 import { ThanksComponent} from './users/thanks.component';
+import { ConfirmBooking } from './users/confirm-booking.component';
 
 export const routes: Route[] = [
   { path: '', component: HomeComponent },
@@ -31,5 +35,8 @@ export const routes: Route[] = [
   { path: 'tutor/signup', component: SignupTutorComponent},
   { path: 'one2one', component: VideoOneToOneComponent},
   { path: 'avilable-classes', component: AvilableClasses},
-  { path: 'tutors/:tutorId', component: TutorDetailsComponent}
+  { path: 'tutors/:tutorId', component: TutorDetailsComponentUser},
+  { path: 'tutor/:tutorId', component: TutorDetailsComponent},
+  { path: 'confirm-booking', component: ConfirmBooking},
+  // { path: 'confirm-booking/:tutorId:classTime', component: ConfirmBooking}
 ];

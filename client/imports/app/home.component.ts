@@ -43,7 +43,7 @@ export class HomeComponent {
       window.location.href='/signup';
       return;
     }
-    window.location.href = '/avilable-classes';
+    window.location.href = '/tutors';
   }
 
   request():void{

@@ -19,22 +19,30 @@
     "meteor-node-stubs": "0.2.3"
   },
   "dependencies": {
-    "@angular/common": "2.1.2",
+    "@angular/common": "^2.1.1",
     "@angular/compiler": "2.1.2",
-    "@angular/core": "2.1.2",
+    "@angular/core": "^2.1.1",
     "@angular/forms": "2.1.2",
+    "@angular/material": "^2.0.0-alpha.9",
     "@angular/platform-browser": "2.1.2",
     "@angular/platform-browser-dynamic": "2.1.2",
     "@angular/router": "3.1.2",
+    "@angular2-material/grid-list": "^2.0.0-alpha.8-2",
+    "@types/node": "^7.0.5",
+    "angular-calendar": "^0.7.2",
+    "angular2-file-drop": "^0.2.0",
     "angular2-meteor": "0.7.0",
     "angular2-meteor-accounts-ui": "^1.0.0",
     "angular2-meteor-polyfills": "0.1.1",
     "angular2-meteor-tests-polyfills": "0.0.2",
     "babel-runtime": "^6.20.0",
     "bootstrap": "^4.0.0-alpha.3",
+    "gm": "^1.23.0",
+    "md-data-table": "^2.2.0",
     "meteor-rxjs": "0.4.3",
     "reflect-metadata": "0.1.8",
-    "rxjs": "5.0.0-beta.12",
+    "rxjs": "^5.0.0-beta.12",
+    "spawn-sync": "^1.0.15",
     "zone.js": "0.6.26"
   }
 }
