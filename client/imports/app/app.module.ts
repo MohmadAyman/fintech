@@ -9,7 +9,6 @@ import { SHARED_DECLARATIONS } from './shared';
 import {MdGridListModule} from '@angular2-material/grid-list';
 import { MdButtonModule } from "@angular2-material/button";
 import { MdButtonToggleModule } from "@angular2-material/button-toggle";
-import { DatepickerModule } from 'angular2-material-datepicker'
 import { CalendarModule } from 'angular-calendar';
 import { MdToolbarModule } from "@angular2-material/toolbar";
 import { MdInputModule } from "@angular2-material/input";
@@ -47,7 +46,6 @@ import { HomeComponent } from './home.component';
     // FileDropModule,
     MdButtonToggleModule.forRoot(),
     CalendarModule.forRoot(),
-    DatepickerModule,
     MdGridListModule.forRoot()
     // mdDataTable
   ],
