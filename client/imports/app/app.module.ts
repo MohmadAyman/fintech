@@ -17,7 +17,7 @@ import { MdCardModule } from "@angular2-material/card";
 import { MdCoreModule } from "@angular2-material/core";
 import { MdCheckboxModule } from "@angular2-material/checkbox";
 import {MdListModule} from "@angular2-material/list";
-import { FileDropModule } from "angular2-file-drop";
+// import { FileDropModule } from "angular2-file-drop";
 
 // import { mdDataTable } from "md-data-table";
 
@@ -44,7 +44,7 @@ import { HomeComponent } from './home.component';
     MdCardModule.forRoot(),
     MdCheckboxModule.forRoot(),
     MdListModule.forRoot(),
-    FileDropModule,
+    // FileDropModule,
     MdButtonToggleModule.forRoot(),
     CalendarModule.forRoot(),
     DatepickerModule,
