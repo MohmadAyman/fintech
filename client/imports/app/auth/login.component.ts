@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   error: string;
   tutorId: string;
   tutor: Tutor;
-  subscribed: boolaen;
+  subscribed: boolean;
   tutorSub: Subscription;
 
   constructor(private router: Router, private zone: NgZone, private formBuilder: FormBuilder) {}
