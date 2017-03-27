@@ -16,16 +16,7 @@ export class AvilableClasses{
   classes: Observable<Class_[]>;
   username: string;
   classSub: Subscription;
-  // times: string[];
-  times: string[];
-  time: string;
-  AM: string;
-  PM: string;
-  timeAsNum: number;
   ngOnInit() {
-    this.times = [['10:00-10:45'],[ '11:00-11:45'],['12:00-12:45'],[ '01:00-01:45']
-    ,['02:00-02:45'],[ '03:00-03:45'],['04:00-04:45'],[ '05:00-05:45']
-    ,['06:00-06:45'],[ '07:00-07:45'],['08:00-08:45'],[ '09:00-09:45']];
     if (!Meteor.userId()) {
       alert('You hve to be a user to request a class');
       window.location.href='/signup';
@@ -37,15 +28,7 @@ export class AvilableClasses{
           this.classes = Classes.find();
     });
   }
-
-  book(): void {
-    console.log(this.AM);
-    // route to the page where the user enters
-    // his skype name and confirms booking
-  }
-  trackByFn():boolean{
-    return false;
-  }
+  
   ngOnDestroy() {
     
   }

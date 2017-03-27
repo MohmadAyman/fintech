@@ -1,43 +1,13 @@
 <div>
-    <p style="text-align:center">Classes are for 45mins<p>
-      <!--<div class="card-columns">
+    Avilalable Classes:
+      <div class="card-columns">
         <div class="card" *ngFor="let class of classes| async">
       <img class="card-img-top" src="..." alt="Card image cap">
       <div class="card-block">
-        <h4 class="card-title">{{class.startTime}}</h4>
+        <a [routerLink]="['/class', class._id]"><h4 class="card-title">{{class.startTime}}</h4></a>
         <h6>{{class.startDate}}</h6>
         <p class="card-text"><small class="text-muted">{{class.language}}</small></p>
         </div>
-     <button [hidden]="tutor" [routerLink]="['/class', class._id]" type="button" class="btn btn-primary">Book Class</button>
     </div>
-    </div>-->
-</div>
-
-
-
-<label for="example-date" class="col-2 col-form-label">Date</label>
-<div class="col-6">
-<input class="form-control" type="date" value="2011-08-19" id="example-date">
-</div>
-
-AM
-<div class="container-fluid">
-    <div class="row">
-            <md-button-toggle-group name="AM" [(ngModel)]="AM">
-                <md-button-toggle *ngFor="let item of times" [value]="item">
-                    {{item}}                    
-                </md-button-toggle>
-            </md-button-toggle-group>
-          </div>
-    <div class="row">
-PM
-            <md-button-toggle-group name="PM" [(ngModel)]="PM">
-                <md-button-toggle *ngFor="let item of times" [value]="item">
-                    {{item}}                    
-                </md-button-toggle>
-            </md-button-toggle-group>
-          </div>
     </div>
-    <br>
-     <button type="button" (click)="book" class="btn btn-primary">Book</button>
 </div>

@@ -1,8 +1,8 @@
+
 <div class="card-columns">
   <div class="card" *ngFor="let tutor of tutors| async">
+    <img class="card-img-top" src="...">
     <div class="card-block">
-    <!--<img class="card-img-top img-fluid" *ngIf="tutor.images && tutor.images.length > 0" [src]="tutor | displayMainImage">-->
-    
       <a [routerLink]="['/tutors', tutor._id]"><h4 class="card-title">{{tutor.name}}</h4></a>
       <a [routerLink]="['/tutors', tutor._id]" class="card-text" >{{tutor.language}}</a>
         <button [hidden]="!isAdmin" (click)="removeTutor(tutor)">X</button>

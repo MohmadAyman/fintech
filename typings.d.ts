@@ -3,7 +3,6 @@
 /// <reference types="@types/underscore" />
 /// <reference types="@types/chai" />
 /// <reference types="@types/mocha" />
-/// <reference types="@types/node" />
 
 declare module "*.html" {
   const template: string;

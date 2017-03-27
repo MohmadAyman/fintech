@@ -6,13 +6,4 @@ export interface Tutor extends CollectionObject{
   hourly_rating: number;
   language: string;
   classesIds?: string[];
-  available_times?: Schedule[];
-  lastUpdateDate?: Date;
-  times?: number[];
-  images?: string[];
-}
-
-interface Schedule {
-  startDate: Date;
-  times: string[];
 }

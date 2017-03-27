@@ -1,4 +1,4 @@
-  <!--<div *ngIf="tutor">
+  <div *ngIf="tutor">
     <label>Name</label>
       <input [disabled]="!isMe" [(ngModel)]="tutor.name"></input><br>
     <label>Hourly rating</label>
@@ -21,33 +21,41 @@
         </div>
       </div>
       </div>
-  </div>-->
+  </div>
+    <!--<ul>
+    <li*ngFor="let class of tutorClasses| async">
+          <ul>
+          <a [routerLink]="['/class', class._id]">{{class.name}}</a>
+          
+          <p>{{class.language}}</p>
+          <div *ngIf="class.active">
+            <p>Class is Currently Active</p>
+          </div>
+          </li>
+        </ul>
+    </li>
+    </ul>-->
+    <div *ngIf="user">
+    <form action={{mailtoTutor}} method="post" enctype="text/plain">
+    <label> Contact tutor: </label>
+    Your Name:<br>
+      <input type="text" name="name"><br>
+      <input [hidden]="true" type="text" [(ngModel)]="user.emails[0].address" name="mail"><br>
+      Message:<br>
+      <input type="text" name="comment" size="50"><br><br>
+      <input type="submit" value="Send">
+      <input type="reset" value="Reset">
+    </form>
+    </div>
+  </div>
 
-Choose your avilable classes
-<br>
-<br>
-day one represents today : {{today}}
-<md-button-toggle-group name="alignment" [(ngModel)]="day">
-  <md-button-toggle-group name="noneed">
-    <md-button-toggle (click)="changeDay(0)" value="0">1</md-button-toggle>
-    <md-button-toggle (click)="changeDay(1)" value="1">2</md-button-toggle>
-    <md-button-toggle (click)="changeDay(2)" value="2">3</md-button-toggle>
-    <md-button-toggle (click)="changeDay(3)" value="3">4</md-button-toggle>
-    <md-button-toggle (click)="changeDay(4)" value="4">5</md-button-toggle>
-    <md-button-toggle (click)="changeDay(5)" value="5">6</md-button-toggle>
-    <md-button-toggle (click)="changeDay(6)" value="6">7</md-button-toggle>
-    </md-button-toggle-group>
-</md-button-toggle-group>
-  <md-grid-list cols="12" rowHeight="50px">
-    <md-grid-tile *ngFor="let tile of tutorSchedule[day]; let i=index">
-                      <button (click)="toggleSlot(i)" type="button" [ngStyle]="{'color': colorsSched[day][i]}">X</button>
-      </md-grid-tile>
-  </md-grid-list>
-<button type="button" (click)="addSlot()" class="btn btn-primary">Add</button>
-<br>
-<br>
-Green -> avilable slots.
-<br>
-Red -> booked solts.
-<br>
-Black -> not avivilable.
+  <div class="card-columns">
+  <div class="card" *ngFor="let class of tutorClasses| async">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <a [routerLink]="['/tutors', tutor._id]"><h4 class="card-title">{{tutor.name}}</h4></a>
+      <a [routerLink]="['/tutors', tutor._id]" class="card-text" >{{tutor.language}}</a>
+            <button (click)="removeTutor(tutor)">X</button>
+    </div>
+  </div>
+</div>

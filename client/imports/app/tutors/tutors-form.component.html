@@ -1,4 +1,4 @@
-<form [formGroup]="addForm" (ngSubmit)="addTutor(); upload.reset();">
+<form [formGroup]="addForm" (ngSubmit)="addTutor()">
   
   <label>Tutor Name</label>
   <input type="text" formControlName="name">
@@ -8,8 +8,6 @@
 
   <label>rate</label>
   <input type="text" formControlName="hourly_rating">
-   
-  <!--<upload-image #upload (onFile)="onImage($event)"></upload-image>-->
 
   
   <button>Add</button>

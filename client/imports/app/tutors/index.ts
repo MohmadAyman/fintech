@@ -4,7 +4,7 @@ import { TutorsListComponent } from './tutors-list.component';
 import { MyClassesListComponent } from './classes-list.component';
 import { ClassDetailsComponent } from './class-details.component';
 import { TutorDetailsComponent } from './tutor-details.component';
-// import { UploadImageComponent } from './upload-image.component';
+
 
 export const TUTOR_DECLARATIONS = [
   AddClassFormComponent,
@@ -13,5 +13,4 @@ export const TUTOR_DECLARATIONS = [
   MyClassesListComponent,
   ClassDetailsComponent,
   TutorDetailsComponent
-  // UploadImageComponent
 ];

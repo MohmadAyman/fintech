@@ -1,7 +1,7 @@
-<title> Confirm Class Bokking </title>
 <form *ngIf="class">
   <label>Time</label>
   <input type="text" [disabled]="!isOwner" [(ngModel)]="class.startTime" name="name">
+  <br>
   <label>Date</label>
   <input type="text" [disabled]="!isOwner" [(ngModel)]="class.startDate" name="language">
   <br>
@@ -23,8 +23,6 @@
   <button [hidden]="!isOwner" (click)="removeClass()">X</button>
     <!--<h3>number of enrolled students in this class is</h3>
      <div *ngIf="class"> {{numberOfInStudends}} </div>-->
-  <p> Required - Please enter your Skype name in the box below. </p>
-  <md-input type="text" placeholder="Your Skype's username" ></md-input>
 </form>
 
 <div *ngIf="tutor">

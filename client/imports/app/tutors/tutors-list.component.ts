@@ -18,14 +18,12 @@ export class TutorsListComponent {
   tutors: Observable<Tutor[]>;
   t : Tutor;
   tutorSub: Subscription;
-  imagesSubs: Subscription;
  
    ngOnInit() {
-      this.imagesSubs = MeteorObservable.subscribe('images').subscribe();
-      this.tutorSub = MeteorObservable.subscribe('tutors').subscribe(() => {
-        
-        this.tutors = Tutors.find({}).zone();
-      });
+        this.tutorSub = MeteorObservable.subscribe('tutors').subscribe(() => {
+          
+          this.tutors = Tutors.find({}).zone();
+        });
   
         // if (this.tutorSub) {
         //   this.tutorSub.unsubscribe();
@@ -50,7 +48,6 @@ export class TutorsListComponent {
       // this.classesSub.unsubscribe();
       // this.paramsSub.unsubscribe();
       this.tutorSub.unsubscribe();
-      this.imagesSubs.unsubscribe();
     }
 
 }
