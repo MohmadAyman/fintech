@@ -15,6 +15,8 @@ import { VideoOneToOneComponent } from './communication/video-one-to-one.compone
 import { HomeComponent } from './home.component';
 import { AvilableClasses } from './users/active-classes.component';
 import { ThanksComponent} from './users/thanks.component';
+import { TutorDetailsComponentUser } from './users/tutor-details.component';
+
 
 export const routes: Route[] = [
   { path: '', component: HomeComponent },
@@ -31,5 +33,6 @@ export const routes: Route[] = [
   { path: 'tutor/signup', component: SignupTutorComponent},
   { path: 'one2one', component: VideoOneToOneComponent},
   { path: 'avilable-classes', component: AvilableClasses},
-  { path: 'tutors/:tutorId', component: TutorDetailsComponent}
-];
+  { path: 'tutors/:tutorId', component: TutorDetailsComponentUser},
+  { path: 'tutor/:tutorId', component: TutorDetailsComponent}
+ ];
