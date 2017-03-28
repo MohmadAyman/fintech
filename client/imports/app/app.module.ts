@@ -14,7 +14,7 @@ import { MdCoreModule } from "@angular2-material/core";
 import { MdCheckboxModule } from "@angular2-material/checkbox";
 
 import {MdListModule} from "@angular2-material/list";
-import { FileDropModule } from "angular2-file-drop";
+// import { FileDropModule } from "angular2-file-drop";
 
 import {MdGridListModule} from '@angular2-material/grid-list';
 import { MdButtonToggleModule } from "@angular2-material/button-toggle";
@@ -42,8 +42,8 @@ import { HomeComponent } from './home.component';
     MdCheckboxModule.forRoot(),
     MdListModule.forRoot(),
     MdButtonToggleModule.forRoot(),
-    MdGridListModule.forRoot(),
-    FileDropModule
+    MdGridListModule.forRoot()
+    // FileDropModule
   ],
   declarations: [
     AppComponent,
