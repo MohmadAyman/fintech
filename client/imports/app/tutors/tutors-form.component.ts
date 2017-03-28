@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Meteor } from 'meteor/meteor';
+
 // import { AccountsModule } from 'angular2-meteor-accounts-ui';
 
 import { Tutors } from '../../../../both/collections/tutors.collection';
@@ -14,28 +15,31 @@ import template from './tutors-form.component.html';
 
 export class TutorsFormComponent implements OnInit {
   addForm: FormGroup;
-  // language_list = [
-  //   { display: 'Arabic' },
-  //   { display: 'English' },
-  //   { display: 'French' },
-  // ];
-
+  images: string[] = [];
+  a_day: number[] = new Array(24);
+  times: number[][] = new Array();
   constructor(
     private formBuilder: FormBuilder
   ) {}
 
-  // AccountsModule.onCreateUser(function(options, user) {
-  //     console.log(user._id);
-
-  //     return user;
-  // });
-
   ngOnInit() {
+    for (var i = 0; i < 24; i++) {
+        this.a_day[i]=0;
+    }
+    for (var i = 0; i < 7; i++) {
+      this.times[i]=this.a_day;
+    }
+  console.log(this.times);
     this.addForm = this.formBuilder.group({
       name: ['', Validators.required],
       hourly_rating: ['', Validators.required],
       language: ['', Validators.required]
     });
+  }
+ 
+  onImage(imageId: string) {
+    this.images.push(imageId);
+    console.log(imageId);
   }
 
   // addTutor(): void {
@@ -53,9 +57,12 @@ export class TutorsFormComponent implements OnInit {
     }
 
     if (this.addForm.valid) {
-      Tutors.insert(Object.assign({},this.addForm.value,{ userId: Meteor.userId()}));
+      console.log(this.times);
 
-      this.addForm.reset();
+      Tutors.insert(Object.assign({},this.addForm.value,{ userId: Meteor.userId()
+      ,times: this.times, images: this.images}));
+
+      // this.addForm.reset();
     }
   }
 
