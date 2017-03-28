@@ -3,7 +3,7 @@ import './imports/publish/classes';
 import './imports/publish/tutors';
 import './imports/publish/users';
 import './imports/publish/requests';
-//import './imports/publish/images';
+import './imports/publications/images';
 
 // Meteor.startup(() => {
 //   loadTutors();
