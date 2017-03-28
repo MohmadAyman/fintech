@@ -6,4 +6,5 @@ export interface Tutor extends CollectionObject{
   hourly_rating: number;
   language: string;
   classesIds?: string[];
+  images?: string[];
 }
