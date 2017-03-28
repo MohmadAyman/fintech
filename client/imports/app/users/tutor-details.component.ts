@@ -28,6 +28,8 @@ import template from './tutor-details.component.html';
 })
 @InjectUser('user')
 export class TutorDetailsComponentUser implements OnInit, OnDestroy {
+  today: Date = new Date();
+  today_show: Date = new Date();
   tutorId: string;
   slot: number;
   color: string[]= new Array(24); 
@@ -46,6 +48,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   tutorClasses: Observable<Class_[]>;
   user: Meteor.User;
   subbed: boolean;
+
 
   a_day: number[] = new Array(24);
   tutorSchedule: number[][] = new Array();
@@ -133,6 +136,8 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   }
 
   changeDay(i : number): void{
+    this.today_show.setDate(this.today.getDate()+i);
+
     console.log(i); 
     for(var j = 0; j < 24; j++) {
       // console.log(this.tutorSchedule[i][j]);

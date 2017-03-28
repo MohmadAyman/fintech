@@ -29,6 +29,7 @@ import template from './tutor-details.component.html';
 @InjectUser('user')
 export class TutorDetailsComponent implements OnInit, OnDestroy {
   today: Date = new Date();
+  today_show: Date = new Date();
   lastUpdateDate: Date;
   diffrenceDays: number;
   tutorId: string;
@@ -138,7 +139,8 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
   }
 
   changeDay(i : number): void{
-    console.log(i); 
+    console.log(i);
+    this.today_show.setDate(this.today.getDate()+i);
     for(var j = 0; j < 24; j++) {
       // console.log(this.tutorSchedule[i][j]);
       if(this.tutorSchedule[i][j]==1){
