@@ -42,7 +42,6 @@ export class UploadImageComponent implements OnInit {
           }).zone();
         });
 
- 
         this.thumbsSubscription = MeteorObservable.subscribe("thumbs", filesArray).subscribe();
       });
     });
