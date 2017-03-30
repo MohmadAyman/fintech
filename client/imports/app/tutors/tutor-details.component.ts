@@ -80,17 +80,23 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
     this.tutor=Tutors.findOne(this.tutorId);
     this.tutorAsUserId=this.tutor.userId;
     this.tutorSchedule=this.tutor.times;
+    // TODO handle if thelustupdateDate doesnt exist yet
     this.lastUpdateDate = this.tutor.lastUpdateDate;
+    if(!this.lastUpdateDate){
+      console.log('first edit');
+      this.lastUpdateDate = this.today;
+    }
     console.log(this.lastUpdateDate);
     this.diffrenceDays = this.lastUpdateDate.getDate() - this.today.getDate();
     console.log(this.diffrenceDays);
     for (var i = 0; i < 7; i++) {
         for(var j = 0; j < 24; j++) {
-          // console.log(this.tutorSchedule[i][j]);
           if(this.tutorSchedule[i][j]==1){
             this.colorsSched[i][j]='blue';
-          }else{
+          }else if(this.tutorSchedule[i][j]==0){
             this.colorsSched[i][j]='green';
+          }else{
+            this.colorsSched[i][j]='red';
           }
         }
       }
@@ -127,37 +133,38 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
   }
 
   toggleSlot(i: number): void {
+    this.today_show.setHours(i,0,0);
     this.slot = i;
-    console.log(this.tutorSchedule[this.day][i]);
-    if(this.tutorSchedule[this.day][i]==1){
-      this.tutorSchedule[this.day][i]=0;
-      this.colorsSched[this.day][i]='red';
-    }else{
+    console.log(this.day);
+    if(this.tutorSchedule[this.day][i]==0){
       this.tutorSchedule[this.day][i]=1;
       this.colorsSched[this.day][i]='blue';
-    } 
+    }else{
+      this.tutorSchedule[this.day][i]=0;
+      this.colorsSched[this.day][i]='green';
+    }
   }
 
   changeDay(i : number): void{
     console.log(i);
+    this.day = i;
     this.today_show.setDate(this.today.getDate()+i);
     for(var j = 0; j < 24; j++) {
-      // console.log(this.tutorSchedule[i][j]);
       if(this.tutorSchedule[i][j]==1){
         this.colorsSched[i][j]='blue';
+      }else if(this.tutorSchedule[i][j]==0){
+        this.colorsSched[i][j]='green';
       }else{
         this.colorsSched[i][j]='red';
       }
+      // TODO Handle if the slot is already booked
     }
   }
 
   addSlot(): void{
-    console.log(this.slot);
-    console.log(this.tutorSchedule)
-    console.log(this.tutor.lastUpdateDate.toDateString());
     this.lastUpdateDate = this.today;
     this.today.setDate( this.today.getDate() + 7);
-    console.log(this.today);
+    console.log(this.tutorSchedule);
     Tutors.update(this.tutorId, {
               $set:{times: this.tutorSchedule
                 , lastUpdateDate: this.lastUpdateDate }

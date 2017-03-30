@@ -1,5 +1,5 @@
   <div *ngIf="tutor" style="margin-left:2%;margin-right:auto;margin-top:2%;margin-bottom:2%">
-    <label >Name: <b style="margin-left:30%;"> {{tutor.name}} </b> </label>
+    <label >Name: <b style="margin-left:30%;">  {{tutor.name}} </b> </label>
     <br>
     <label>Hourly rating: <b style="margin-left:30%;">  {{tutor.hourly_rating}} </b> </label>
     <br>
@@ -17,7 +17,10 @@
         </ul>
     </li>
     </ul>-->
+Choose the day
+<div style="margin-left:35%;margin-right:35%;">
 {{today_show}}
+</div>
 
 <md-button-toggle-group style="margin-left:35%;margin-right:35%;" name="alignment" [(ngModel)]="day">
   <md-button-toggle-group style="margin-left:auto;margin-right:auto;margin-top:8%;margin-bottom:8%" name="noneed">
@@ -31,13 +34,16 @@
     </md-button-toggle-group>
 </md-button-toggle-group>
 <br>
-  <md-grid-list cols="12" rowHeight="50px">
+Choose the hour
+  <md-grid-list cols="24" rowHeight="50px">
     <md-grid-tile *ngFor="let tile of tutorSchedule[day]; let i=index">
+      
           <!--<md-button-toggle-group [(ngModel)]=tutorSchedule[i]>-->
       <!--<md-button-toggle-group name="noneed" multiple>-->
             <!--<button (click)="toggleSlot(i)">-->
                      <!--<input type="checkbox" onclick="toggleSlot(i)" value="">   -->
-                      <button align-items:center (click)="toggleSlot(i)" type="button" [ngStyle]="{'color': colorsSched[day][i]}">X</button>
+                      <button align-items:center (click)="toggleSlot(i)" type="button" [ngStyle]="{'color': colorsSched[day][i]}"
+                      [disabled]="colorsSched[day][i]=='red'">{{i}}</button>
               <!--</button>-->
           <!--</md-button-toggle-group>-->
       </md-grid-tile>
@@ -45,8 +51,14 @@
 
 <br>
     <br>
-    
-   <button type="button" style="margin-left:auto;margin-right:auto;display:block;margin-top:5%;margin-bottom:0%" (click)="bookClass()" align-center class="btn btn-primary">Book class</button>
+    <div style="margin-left:10%;display:block;">
+    <input type="text" [(ngModel)]="user_skype_email"> Enter your skype Email </input>
+    <br>
+    <small> Your email will only be shared with the tutor you register with</small>
+    <br>
+   <button type="button" style="margin-left:auto;margin-right:auto" (click)="bookClass()" align-center class="btn btn-success">Book class</button>
+    <div>
+
     <!--<div *ngIf="user">
     <form action={{mailtoTutor}} method="post" enctype="text/plain">
     <label> Contact tutor: </label>
@@ -59,4 +71,3 @@
       <input type="reset" value="Reset">
     </form>
     </div>-->
-colors

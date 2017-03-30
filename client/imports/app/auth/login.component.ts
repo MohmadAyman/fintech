@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
                 window.location.href = '/tutors/'+this.tutor._id;
             }
             else{
-              window.location.href = '/classesList';
+              window.location.href = '/tutors';
             }
           });
   

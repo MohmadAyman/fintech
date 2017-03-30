@@ -23,10 +23,10 @@
       </div>
   </div>-->
 
-Choose your avilable classes
 <br>
+ Select day:
 <br>
-day one represents today : {{today_show}}
+
 <br>
 <md-button-toggle-group name="alignment" [(ngModel)]="day">
   <md-button-toggle-group name="noneed">
@@ -39,16 +39,21 @@ day one represents today : {{today_show}}
     <md-button-toggle (click)="changeDay(6)" value="6">7</md-button-toggle>
     </md-button-toggle-group>
 </md-button-toggle-group>
-  <md-grid-list cols="12" rowHeight="50px">
+{{today_show}}
+<br>
+Make your avilable hours blue:
+<br>
+  <md-grid-list cols="24" rowHeight="50px">
     <md-grid-tile *ngFor="let tile of tutorSchedule[day]; let i=index">
-                      <button (click)="toggleSlot(i)" type="button" [ngStyle]="{'color': colorsSched[day][i]}">X</button>
-      </md-grid-tile>
+                      <button align-items:center (click)="toggleSlot(i)" type="button" [ngStyle]="{'color': colorsSched[day][i]}"
+                      [disabled]="colorsSched[day][i]=='red'">{{i}}</button>
+    </md-grid-tile>
   </md-grid-list>
-<button type="button" (click)="addSlot()" class="btn btn-primary">Add</button>
+<button type="button" align:center (click)="addSlot()" class="btn btn-success">Add</button>
 <br>
 <br>
 Green -> avilable slots.
 <br>
 Red -> booked solts.
 <br>
-Black -> not avivilable.
+Blue -> avivilable for booking.

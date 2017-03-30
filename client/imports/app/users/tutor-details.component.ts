@@ -28,6 +28,7 @@ import template from './tutor-details.component.html';
 })
 @InjectUser('user')
 export class TutorDetailsComponentUser implements OnInit, OnDestroy {
+  user_skype_email: string;
   today: Date = new Date();
   today_show: Date = new Date();
   tutorId: string;
@@ -124,25 +125,28 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   }
 
   toggleSlot(i: number): void {
+    this.today_show.setHours(i,0,0);
     this.slot = i;
     console.log(this.tutorSchedule[this.day][i]);
-    if(this.tutorSchedule[this.day][i]==1){
-      this.tutorSchedule[this.day][i]=0;
-      this.colorsSched[this.day][i]='red';
-    }else{
+    if(this.tutorSchedule[this.day][i]==0){
       this.tutorSchedule[this.day][i]=1;
+      this.colorsSched[this.day][i]='green';
+    }else if(this.tutorSchedule[this.day][i]==1){
+      // this.tutorSchedule[this.day][i]=0;
       this.colorsSched[this.day][i]='blue';
-    } 
+    }else if(this.colorsSched[this.day][i]='blue'){
+      this.colorsSched[this.day][i]='green';
+    }
   }
 
   changeDay(i : number): void{
     this.today_show.setDate(this.today.getDate()+i);
-
+    
     console.log(i); 
     for(var j = 0; j < 24; j++) {
       // console.log(this.tutorSchedule[i][j]);
       if(this.tutorSchedule[i][j]==1){
-        this.colorsSched[i][j]='blue';
+        this.colorsSched[i][j]='green';
       }else{
         this.colorsSched[i][j]='red';
       }
@@ -150,8 +154,14 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   }
 
   bookClass(): void{
+    if(!this.user_skype_email){
+      alert('Please enter your skype username so the teatch can contact you :)');
+    }else{
+      alert('you are now registered in this class :)');
+    }
     console.log(this.slot);
     console.log(this.tutorSchedule)
+    this.tutorSchedule[this.day][this.slot]=2;
     Tutors.update(this.tutorId, {
               $set:{times: this.tutorSchedule }
           });
