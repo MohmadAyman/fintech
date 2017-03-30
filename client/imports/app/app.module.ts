@@ -13,8 +13,11 @@ import { MdCardModule } from "@angular2-material/card";
 import { MdCoreModule } from "@angular2-material/core";
 import { MdCheckboxModule } from "@angular2-material/checkbox";
 
+
 import {MdListModule} from "@angular2-material/list";
 // import { FileDropModule } from "angular2-file-drop";
+// import { ImageUploadModule } from 'angular2-image-upload';
+import { Ng2FileInputModule } from 'ng2-file-input'; // <-- import the module
 
 import {MdGridListModule} from '@angular2-material/grid-list';
 import { MdButtonToggleModule } from "@angular2-material/button-toggle";
@@ -42,7 +45,9 @@ import { HomeComponent } from './home.component';
     MdCheckboxModule.forRoot(),
     MdListModule.forRoot(),
     MdButtonToggleModule.forRoot(),
-    MdGridListModule.forRoot()
+    MdGridListModule.forRoot(),
+    Ng2FileInputModule.forRoot()
+    // ImageUploadModule.forRoot()
     // FileDropModule
   ],
   declarations: [

@@ -54,6 +54,7 @@ export class UploadImageComponent implements OnInit {
 
    
   onFileDrop(file: File): void {
+    console.log(file);
     this.uploading = true;
     console.log('Iploading');
        upload(file)
@@ -78,4 +79,23 @@ export class UploadImageComponent implements OnInit {
       this.filesArray = [];
       this.files.next(this.filesArray);
     }
+
+    onFileChange(event: any):void{
+      console.log(event.file);
+      const file=event.file;
+      this.uploading = true;
+    console.log('Iploading');
+       upload(file)
+      .then((result) => {
+        this.uploading = false;
+        this.addFile(result);
+        console.log('uploaded');
+        console.log(result);
+      })
+      .catch((error) => {
+        this.uploading = false;
+        console.log(`Something went wrong!`, error);
+      });
+    }
+    
 }

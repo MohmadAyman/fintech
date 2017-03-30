@@ -1,4 +1,4 @@
-<div class="parties-update-container">
+<!--<div class="parties-update-container">
   <div fileDrop
        [ngClass]="{'file-is-over': fileIsOver, 'file-uploading': uploading}"
        (fileOver)="fileOver($event)"
@@ -15,4 +15,15 @@
       hello from image uploading
     </p>
 </div>
-</div>
+</div>-->
+
+<ng2-file-input (onChange)="onFileChange($event)"></ng2-file-input> 
+
+<!--<div image-upload
+  [max]="100"
+  [url]="'example.com/images/upload'"
+  [headers]="[
+    {header: 'Authorization', value: 'MyToken'}
+  ]"
+  (onFileUploadFinish)="imageUploaded($event)"
+></div>-->
