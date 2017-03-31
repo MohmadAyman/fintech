@@ -8,9 +8,9 @@ import { Accounts } from 'meteor/accounts-base';
 
 Accounts.config({sendVerificationEmail: true, forbidClientAccountCreation: false}); 
 
-Meteor.startup(function () {
-  process.env.MAIL_URL = 'smtp://postmaster@sandboxff74ed144c154ecf832508ba9c4b9d08.mailgun.org:mpkfaa123@smtp.mailgun.org:587';
-});
+// Meteor.startup(function () {
+//   process.env.MAIL_URL = 'smtp://postmaster@sandboxff74ed144c154ecf832508ba9c4b9d08.mailgun.org:mpkfaa123@smtp.mailgun.org:456';
+// });
 
 // Meteor.startup(() => {
 //   loadTutors();
