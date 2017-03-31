@@ -104,7 +104,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
       this.requests=Requests.find();
   });
     
-    //TODO only find classes that this tutor do
+    //TODO only find classes that this tutor do 34064745
     this.classesSub = MeteorObservable.subscribe('classes').subscribe(() => {
       this.tutorClasses = Classes.find({tutorId: {$eq: this.tutorAsUserId} });
     });
@@ -117,9 +117,8 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   }
 
   addClass(r: Request): void{
-    Classes.insert(Object.assign({ tutorId: Meteor.userId() 
-        ,language:this.tutor.language,
-        startDate: r.startDate, startTime: r.startTime, userId:r.userId,
+    Classes.insert(Object.assign({ userId: Meteor.userId() 
+        ,startDate: this.today_show, startTime: r.startTime, userId:r.userId,
         userGmail: r.userGmail, userSkype: r.userSkype}));
     Requests.remove(r._id);
   }
@@ -165,7 +164,9 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     Tutors.update(this.tutorId, {
               $set:{times: this.tutorSchedule }
           });
-    // window.location.href = 'confirm-booking/'+this.tutorId+'/'+i;
+    // add the user skype user name to the class
+    Classes
+    window.location.href = 'thanks';
   }
 
   ngOnDestroy() {

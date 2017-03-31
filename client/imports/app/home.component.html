@@ -24,12 +24,12 @@
 <br>
 
 <!--<div *ngIf"!tutor">-->
-<button [hidden]="tutor" (click)="request()" type="button" class="btn btn-primary">Request a Class</button>
+<!--<button [hidden]="tutor" (click)="request()" type="button" class="btn btn-primary">Request a Class</button>-->
 <button [hidden]="tutor" (click)="avilableClasses()" type="button" class="btn btn-success">Join a Class</button>
 <!--</div>-->
 <div *ngIf="tutor">
   <h6> Have a free time?, Add a class, teach people, earn money</h6>
-<a md-button [routerLink]="['/addClass']" ><button type="button" class="btn btn-primary">Add a new Class</button></a>
+<a md-button [routerLink]="['/tutor', tutor._id]" ><button type="button" class="btn btn-primary">Add a new Class</button></a>
 </div>
 <br>  
 <!--<h6>A list of our avilable tutors and the languages the teach in </h6>-->

@@ -169,6 +169,7 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
               $set:{times: this.tutorSchedule
                 , lastUpdateDate: this.lastUpdateDate }
           });
+    alert("You've succefuly added free time slots to your callender");
     // window.location.href = 'confirm-booking/'+this.tutorId+'/'+i;
   }
 
