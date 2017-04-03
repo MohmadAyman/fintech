@@ -165,7 +165,8 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
               $set:{times: this.tutorSchedule }
           });
     // add the user skype user name to the class
-    Classes
+    Classes.insert(Object.assign({ userId: Meteor.userId(),
+      tutorId: this.tutorId,startDate: this.today_show, userSkype: r.userSkype}));
     window.location.href = 'thanks';
   }
 

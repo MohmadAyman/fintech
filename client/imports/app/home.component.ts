@@ -9,12 +9,12 @@ import { Tutor } from '../../../both/models/tutor.model';
 import {InjectUser} from "angular2-meteor-accounts-ui";
 
 import template from './home.component.html';
-// import style from './home.component.scss';
+ import style from './home.component.scss';
 
 @Component({
   selector: 'home',
-  template
-//   styles : [style] 
+  template,
+  styles : [style] 
 })
 @InjectUser('user')
 export class HomeComponent {
