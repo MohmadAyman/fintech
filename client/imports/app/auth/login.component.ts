@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private zone: NgZone, private formBuilder: FormBuilder) {}
 
+
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -33,7 +34,6 @@ export class LoginComponent implements OnInit {
 
     this.error = '';
   }
-
   login() {
     if (this.loginForm.valid) {
       Meteor.loginWithPassword(this.loginForm.value.email, this.loginForm.value.password, (err) => {
@@ -56,8 +56,28 @@ export class LoginComponent implements OnInit {
   
     }
       });
+    // Meteor.loginWithGoogle({requestPermissions: ['email']
+    //   }, function(error) {
+    //     if (error) {
+    //       console.log(error); //If there is any error, will get error here
+    //     }else{
+    //       console.log(Meteor.user());// If there is successful login, you will get login details here
+    //     }
+    //   });
     }
   }
+  
+  googleLogin():void{
+
+    Meteor.loginWithGoogle({
+        requestPermissions: ['email']
+        }, (error) => {
+          if (error) {
+            Session.set('errorMessage', error.reason || 'Unknown error');
+          }
+        });
+ 
+ }
   ngOnDestroy() {
     if(this.subscribed)
       this.tutorSub.unsubscribe();

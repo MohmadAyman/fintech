@@ -10,14 +10,10 @@
       <form [formGroup]="signupForm" #f="ngForm" (ngSubmit)="signup()"
             layout="column" layout-fill layout-padding layout-margin>
 
-        <md-input formControlName="email" type="email" placeholder="Skype Email"></md-input>
-        <md-input formControlName="username" type="text" placeholder="user name"></md-input>
-
+        <md-input formControlName="username" type="text" placeholder="User name"></md-input>
+        <md-input formControlName="email" type="email" placeholder="Email"></md-input>
         <md-input formControlName="password" type="password" placeholder="Password"></md-input>
-        <!--<input [ngModel]="is_a_tutor" type="checkbox" value="true" placeholder="Tutor?" 
-        [ngModelOptions]="{standalone: true}">Tutor?</input>-->
-        <!--<input type="checkbox" value="{{is_a_tutor}}" (change)="checkboxes[$event.target.getAttribute('value')]=$event.target.checked">
-        {{ is_a_tutor }}</label>-->
+
         <div layout="row" layout-align="space-between center">
           <button md-raised-button class="md-primary" type="submit" aria-label="login">Sign Up</button>
         </div>
@@ -28,7 +24,6 @@
           <p class="md-body-1">{{ error }}</p>
         </md-toolbar>
       </div>
-
       <md-divider></md-divider>
 
       <div layout="row" layout-align="center">
@@ -37,3 +32,14 @@
     </div>
   </div>
 </div>
+
+<!--<div class="at-form">
+  <div class="at-oauth">
+    <button class="at-social-btn" id="at-facebook" name="facebook">
+      <i class="fa fa-facebook"></i> Sign in with Facebook
+    </button>
+    <button class="at-social-btn" id="at-twitter" name="twitter">
+      <i class="fa fa-twitter"></i> Sign in with Twitter
+    </button>
+  </div>
+</div>-->

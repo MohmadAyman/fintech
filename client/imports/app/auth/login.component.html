@@ -20,7 +20,7 @@
           <button md-raised-button class="md-primary" type="submit" aria-label="login">Sign In</button>
         </div>
       </form>
-
+      <button md-raised-button class="md-primary" (click)="googleLogin()" type="submit" aria-label="login">Sign In with Google</button>
       <div [hidden]="error == ''">
         <md-toolbar class="md-warn" layout="row" layout-fill layout-padding layout-margin>
           <p class="md-body-1">{{ error }}</p>

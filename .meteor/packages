@@ -27,3 +27,8 @@ accounts-ui
 angular2-compilers@0.6.1
 jalik:ufs-gridfs
 jalik:ufs
+email
+accounts-oauth
+accounts-google
+service-configuration
+accounts-facebook
