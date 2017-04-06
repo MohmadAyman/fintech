@@ -1,46 +1,90 @@
-<div class="view">
-
-<br>
-<br>
-
-<div style="text-align:center;">
-
-  <div class="container">  
-  <br>
-  <div class="row marketing">
-          <div class="col-lg-6">
-            <p>
-                <img src="/background.png" height="210" width="210" alt="sticky bun flickr.com" class="img-responsive img-rounded center-block">
-            </p>
-          </div>
-
-          <div class="col-lg-6">
-            <br><br>
-            <h4></h4>
-            <p>
-            (( عَنْ عُثْمَانَ رَضِي اللَّهم عَنْهم عَنِ النَّبِيِّ صَلَّى اللَّهم عَلَيْهِ وَسَلَّمَ قَالَ خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ ))  
-            </p>
-
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <img class="first-slide" src="quran-wallpaper-14.jpg" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption d-none d-md-block text-left">
+              <h1 style="color: black;"> Learn Quran on Skype.</h1>
+              <p style="color: black;">Online Quran Lessons with Personal Tutors
+          ElMohfez.com is the easy and effective way to learn and teach your self and your kids The Quran. Enjoy interactive classes on Skype with some of the best teachers from around the world.
+          </p>
+              <p><a class="btn btn-lg btn-primary" href="/signup" role="button">Sign up today</a></p>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+                <p style="text-align: center;">(( عَنْ عُثْمَانَ رَضِي اللَّهم عَنْهم عَنِ النَّبِيِّ صَلَّى اللَّهم عَلَيْهِ وَسَلَّمَ قَالَ خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ ))  </p>
 
-  </div>
-  
-<br>
+        <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Heading</h2>
+          <p>Anywhere, Anytime, with best teachers.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Heading</h2>
+          <p>Native certified Teachers, with free trial lessons!.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Heading</h2>
+          <p>Reach your individul goals with tailor made lessons.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+      </div>
+<!--
+      <hr class="featurette-divider">
 
-<!--<div *ngIf"!tutor">-->
-<!--<button [hidden]="tutor" (click)="request()" type="button" class="btn btn-primary">Request a Class</button>-->
-<button [hidden]="tutor" (click)="avilableClasses()" type="button" class="btn btn-success">Join a Class</button>
-<!--</div>-->
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+          <p class="lead">Anywhere, Anytime, with best teachers.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7 push-md-5">
+          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+          <p class="lead">Native certified Teachers. </p>
+        </div>
+        <div class="col-md-5 pull-md-7">
+          <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Reach your individula goals with tailor made lessons. <span class="text-muted">Checkmate.</span></h2>
+          <p class="lead">.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+-->
+
+    
+<!--<button [hidden]="tutor" style="margin-top: 14%" (click)="avilableClasses()" type="button" class="btn btn-primary btn-lg">Book Free Trial!</button>-->
 <div *ngIf="tutor">
   <h6> Have a free time?, Add a class, teach people, earn money</h6>
-<a md-button [routerLink]="['/tutor', tutor._id]" ><button type="button" class="btn btn-primary">Add a new Class</button></a>
-</div>
-<br>  
-<!--<h6>A list of our avilable tutors and the languages the teach in </h6>-->
-    <!--<tutors-list></tutors-list>-->
-</div>
-<!--<a md-button [routerLink]="['/tutors']" ><button type="button" class="btn btn-primary">Tutors</button></a>-->
-
-<!--<addClass-Userform></addClass-Userform>-->
+  <button type="button" [routerLink]="['/tutor', tutor._id]" class="btn btn-primary">Add a new Class</button>
 </div>

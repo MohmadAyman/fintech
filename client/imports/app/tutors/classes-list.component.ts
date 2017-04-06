@@ -6,6 +6,7 @@ import { MeteorObservable } from 'meteor-rxjs';
 import { Classes } from '../../../../both/collections/classes.collection';
 import { Tutors } from '../../../../both/collections/tutors.collection';
 import { Class_ } from  '../../../../both/models/class.model';
+import { Tutor } from  '../../../../both/models/tutor.model';
 import { Request } from  '../../../../both/models/request.model';
 import { Requests } from '../../../../both/collections/requests.collection';
 import template from './classes-list.component.html';
@@ -21,24 +22,23 @@ export class MyClassesListComponent implements OnInit, OnDestroy {
   reqSub: Subscription;
   tutorSub: Subscription;
   is_a_tutor: boolean;
+  tutor: Tutor;
   is_a_user: boolean;
   there_are_classes: boolean;
     ngOnInit() {
       this.is_a_user = false;
       if(Meteor.userId()){      
             this.tutorSub = MeteorObservable.subscribe('tutors').subscribe(() => {
-              if(Tutors.findOne({userId:{$eq:Meteor.userId()}})){
+              this.tutor = Tutors.findOne({userId:{$eq:Meteor.userId()}});
+              if(this.tutor){
                 console.log('tutor');
                 this.is_a_tutor=true;
                 this.classSub = MeteorObservable.subscribe('classes').subscribe(() => {
-                    this.classes = Classes.find({tutorId:{$eq:Meteor.userId()}});
+                    this.classes = Classes.find({tutorId:{$eq:this.tutor._id}});
                 });
               }else{
                 console.log('Not a tutor');
                 this.is_a_user = true;
-                this.reqSub = MeteorObservable.subscribe('requests').subscribe(() => {
-                    this.requests = Requests.find({userId:{$eq:Meteor.userId()}}).zone();
-                });
                 this.classSub = MeteorObservable.subscribe('classes').subscribe(() => {
                     this.classes = Classes.find({userId:{$eq:Meteor.userId()}}).zone();
                 });

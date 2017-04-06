@@ -1,44 +1,28 @@
+classes
+<br>
 <div *ngIf="is_a_user">
-  <div class="card-columns">
-    <h3> Confirmed classes </h3>
+  <div class="rows">
     <div *ngIf="requests">
     <div class="card" *ngFor="let class of classes| async">
-      <img class="card-img-top" src="..." alt="Card image cap">
       <div class="card-block">
-        <a [routerLink]="['/class', class._id]"><h4 class="card-title">{{class.startTime}}</h4></a>
-        <h6>{{class.startDate}}</h6>
-        <p class="card-text"><small class="text-muted">{{class.language}}</small></p>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <div class="card-columns">
-    <h3> Pending classes </h3>
-    <div class="card" *ngFor="let request of requests| async">
-      <img class="card-img-top" src="..." alt="Card image cap">
-      <div class="card-block">
-        <h4 class="card-title">{{request.startTime}}</h4></a>
-        <h6>{{request.startDate}}</h6>
-        <p class="card-text"><small class="text-muted">{{request.language}}</small></p>
+        <a [routerLink]="['/class', class._id]"><h5 class="card-title">{{class.startDate}}</h5></a>
+        <!--To Add tutor name-->
       </div>
     </div>
   </div>
 </div>
+
+
+</div>
+
 <div *ngIf="is_a_tutor">
-  <div class="card-columns">
-    <h3> Confirmed classes </h3>
+  <div class="rows">
     <div class="card" *ngFor="let class of classes| async">
-      <img class="card-img-top" src="..." alt="Card image cap">
       <div class="card-block">
-        <a [routerLink]="['/class', class._id]"><h4 class="card-title">{{class.startTime}}</h4></a>
-        <h6>{{class.startDate}}</h6>
-        <p class="card-text"><small class="text-muted">{{class.language}}</small></p>
+        <a [routerLink]="['/class', class._id]"><h4 class="card-title">{{class.startDate}}</h4></a>
+        <h5> User Skype: {{class.userSkype}} </h5>
       </div>
   </div>
   </div>
-  <a md-button [routerLink]="['/addClass']" ><button type="button" class="btn btn-primary">Add a Class</button></a>
-
-
-
+  <a md-button [routerLink]="['/tutors', tutor._id]" ><button type="button" class="btn btn-primary">Open more classes</button></a>
 </div>
