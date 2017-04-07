@@ -20,11 +20,13 @@ import { Class_ } from  '../../../../both/models/class.model';
 import { Tutors } from '../../../../both/collections/tutors.collection';
 import { Tutor } from  '../../../../both/models/tutor.model';
 
+import style from './tutor-details.component.scss';
 import template from './tutor-details.component.html';
 
 @Component({
   selector: 'tutor-details',
-  template
+  template,
+  styles: [ style ]
 })
 @InjectUser('user')
 export class TutorDetailsComponentUser implements OnInit, OnDestroy {
@@ -131,11 +133,12 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
       this.tutorSchedule[this.day][i]=1;
       this.colorsSched[this.day][i]='green';
     }else if(this.tutorSchedule[this.day][i]==1){
-      // this.tutorSchedule[this.day][i]=0;
+      this.tutorSchedule[this.day][i]=0;
       this.colorsSched[this.day][i]='blue';
-    }else if(this.colorsSched[this.day][i]='blue'){
-      this.colorsSched[this.day][i]='green';
     }
+    // else if(this.colorsSched[this.day][i]='blue'){
+    //   this.colorsSched[this.day][i]='green';
+    // }
   }
 
   changeDay(i : number): void{
