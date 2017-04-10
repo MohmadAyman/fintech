@@ -23,6 +23,9 @@ import { Tutor } from  '../../../../both/models/tutor.model';
 import style from './tutor-details.component.scss';
 import template from './tutor-details.component.html';
 
+import {IMyOptions} from 'mydatepicker';
+
+
 @Component({
   selector: 'tutor-details',
   template,
@@ -46,7 +49,6 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   requests: Observable<Request[]>;
   mailtoTutor: string;
   tutor_user_email: string;
-  //TODO enable tutors to hold more than one class.
   class: Class_;
   tutorClasses: Observable<Class_[]>;
   user: Meteor.User;
@@ -60,6 +62,20 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute
   ) {}
+
+  private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'dd.mm.yyyy',
+        inline: true,
+        disableDateRanges: [{ begin: {year: this.today.getFullYear(), month: this.today.getMonth()-2, day: this.today.getDate()}, end: {year: this.today.getFullYear(),
+           month: this.today.getMonth()+1, day: this.today.getDate()-1} },{ begin: {year: this.today.getFullYear(),month: this.today.getMonth()+1, day: this.today.getDate()+7}, 
+           end: {year: this.today.getFullYear(),month: this.today.getMonth()+2, day: this.today.getDate()} }]
+  };
+
+    // Initialized to specific date (09.10.2018).
+    private model: Object = { date: { year: 2018, month: 10, day: 9 } };
+  
+    constructor() { }
 
   ngOnInit() {
     for (var i = 0; i < 24; i++) {
@@ -141,10 +157,14 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     // }
   }
 
-  changeDay(i : number): void{
+  onDateChanged(event: IMyDateModel) {
+    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    const utc1 = Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
+    const utc2 = Date.UTC(event.jsdate.getFullYear(), event.jsdate.getMonth(), event.jsdate.getDate());
+    const diff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+    const i = diff;
+    this.day = diff;
     this.today_show.setDate(this.today.getDate()+i);
-    
-    console.log(i); 
     for(var j = 0; j < 24; j++) {
       // console.log(this.tutorSchedule[i][j]);
       if(this.tutorSchedule[i][j]==1){

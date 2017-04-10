@@ -19,10 +19,14 @@
     </ul>-->
 Choose the day
 <div style="margin-left:35%;margin-right:35%;">
-{{today_show}}
+  {{today_show}}
+  <form #myForm="ngForm" novalidate>
+      <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                      [(ngModel)]="model" (dateChanged)="onDateChanged($event)" required></my-date-picker>
+  </form>
 </div>
 
-<md-button-toggle-group style="margin-left:35%;margin-right:35%;" name="alignment" [(ngModel)]="day">
+<!--<md-button-toggle-group style="margin-left:35%;margin-right:35%;" name="alignment" [(ngModel)]="day">
   <md-button-toggle-group style="margin-left:auto;margin-right:auto;margin-top:8%;margin-bottom:8%" name="noneed">
     <md-button-toggle (click)="changeDay(0)" value="0">1</md-button-toggle>
     <md-button-toggle (click)="changeDay(1)" value="1">2</md-button-toggle>
@@ -32,7 +36,7 @@ Choose the day
     <md-button-toggle (click)="changeDay(5)" value="5">6</md-button-toggle>
     <md-button-toggle (click)="changeDay(6)" value="6">7</md-button-toggle>
     </md-button-toggle-group>
-</md-button-toggle-group>
+</md-button-toggle-group>-->
 <br>
 Choose the hour of the day:
   <!--<md-grid-list cols="6" rowHeight="50px">
@@ -100,41 +104,41 @@ Choose the hour of the day:
 </ul>
 
 <ul class='circle-container'>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][2], 'border-color':colorsSched[day][2]}" style="border-radius: 12px;"  (click)="toggleSlot(2)" type="button" 
-            [disabled]="colorsSched[day][2]=='red'">3                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][14], 'border-color':colorsSched[day][14]}" style="border-radius: 12px;"  (click)="toggleSlot(14)" type="button" 
+            [disabled]="colorsSched[day][14]=='red'">3                       
             </button></li>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][3], 'border-color':colorsSched[day][3]}" style="border-radius: 12px;"  (click)="toggleSlot(3)" type="button" 
-            [disabled]="colorsSched[day][3]=='red'">4                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][15], 'border-color':colorsSched[day][15]}" style="border-radius: 12px;"  (click)="toggleSlot(15)" type="button" 
+            [disabled]="colorsSched[day][15]=='red'">4                       
             </button></li>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][4], 'border-color':colorsSched[day][4]}" style="border-radius: 12px;"  (click)="toggleSlot(4)" type="button" 
-            [disabled]="colorsSched[day][4]=='red'">5                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][16], 'border-color':colorsSched[day][16]}" style="border-radius: 12px;"  (click)="toggleSlot(16)" type="button" 
+            [disabled]="colorsSched[day][16]=='red'">5                       
             </button></li>
-       <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][5], 'border-color':colorsSched[day][5]}" style="border-radius: 12px;"  (click)="toggleSlot(5)" type="button" 
-            [disabled]="colorsSched[day][5]=='red'">6                       
+       <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][17], 'border-color':colorsSched[day][17]}" style="border-radius: 12px;"  (click)="toggleSlot(17)" type="button" 
+            [disabled]="colorsSched[day][17]=='red'">6                       
             </button></li>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][6], 'border-color':colorsSched[day][6]}" style="border-radius: 12px;"  (click)="toggleSlot(6)" type="button" 
-            [disabled]="colorsSched[day][6]=='red'">7                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][18], 'border-color':colorsSched[day][18]}" style="border-radius: 12px;"  (click)="toggleSlot(18)" type="button" 
+            [disabled]="colorsSched[day][18]=='red'">7                       
             </button></li>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][7], 'border-color':colorsSched[day][7]}" style="border-radius: 12px;"  (click)="toggleSlot(7)" type="button" 
-            [disabled]="colorsSched[day][7]=='red'">8                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][19], 'border-color':colorsSched[day][19]}" style="border-radius: 12px;"  (click)="toggleSlot(19)" type="button" 
+            [disabled]="colorsSched[day][19]=='red'">8                       
             </button></li>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][8], 'border-color':colorsSched[day][8]}" style="border-radius: 12px;"  (click)="toggleSlot(8)" type="button" 
-            [disabled]="colorsSched[day][8]=='red'">9                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][20], 'border-color':colorsSched[day][20]}" style="border-radius: 12px;"  (click)="toggleSlot(20)" type="button" 
+            [disabled]="colorsSched[day][10]=='red'">9                       
             </button></li>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][9], 'border-color':colorsSched[day][9]}" style="border-radius: 12px;"  (click)="toggleSlot(9)" type="button" 
-            [disabled]="colorsSched[day][9]=='red'">10                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][21], 'border-color':colorsSched[day][21]}" style="border-radius: 12px;"  (click)="toggleSlot(21)" type="button" 
+            [disabled]="colorsSched[day][21]=='red'">10                       
             </button></li>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][10], 'border-color':colorsSched[day][10]}" style="border-radius: 12px;"  (click)="toggleSlot(10)" type="button" 
-            [disabled]="colorsSched[day][10]=='red'">11                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][22], 'border-color':colorsSched[day][22]}" style="border-radius: 12px;"  (click)="toggleSlot(22)" type="button" 
+            [disabled]="colorsSched[day][22]=='red'">11                       
             </button></li>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][11], 'border-color':colorsSched[day][11]}" style="border-radius: 12px;"  (click)="toggleSlot(11)" type="button" 
-            [disabled]="colorsSched[day][11]=='red'">12                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][23], 'border-color':colorsSched[day][23]}" style="border-radius: 12px;"  (click)="toggleSlot(23)" type="button" 
+            [disabled]="colorsSched[day][23]=='red'">12                       
             </button></li>
-   <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][0], 'border-color':colorsSched[day][0]}" style="border-radius: 12px;"  (click)="toggleSlot(0)" type="button" 
-            [disabled]="colorsSched[day][0]=='red'">1                       
+   <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][12], 'border-color':colorsSched[day][12]}" style="border-radius: 12px;"  (click)="toggleSlot(12)" type="button" 
+            [disabled]="colorsSched[day][12]=='red'">1                       
             </button></li>
-     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][1], 'border-color':colorsSched[day][1]}" style="border-radius: 12px;"  (click)="toggleSlot(1)" type="button" 
-            [disabled]="colorsSched[day][1]=='red'">2                       
+     <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][13], 'border-color':colorsSched[day][13]}" style="border-radius: 12px;"  (click)="toggleSlot(13)" type="button" 
+            [disabled]="colorsSched[day][13]=='red'">2                       
             </button></li>
    <li>PM</li>
 </ul>

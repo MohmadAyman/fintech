@@ -94,7 +94,7 @@
 .circle-container {
   @include distribute-on-circle(12, 20em, 6em, false); 
   margin: 5em auto 0;
-  border: solid 5px tomato;
+  // border: solid 5px tomato;
 }
 
 .circle-container img { 

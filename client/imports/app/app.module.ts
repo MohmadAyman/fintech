@@ -18,6 +18,7 @@ import {MdListModule} from "@angular2-material/list";
 // import { FileDropModule } from "angular2-file-drop";
 // import { ImageUploadModule } from 'angular2-image-upload';
 import { Ng2FileInputModule } from 'ng2-file-input'; // <-- import the module
+import { MyDatePickerModule } from 'mydatepicker';
 
 import {MdGridListModule} from '@angular2-material/grid-list';
 import { MdButtonToggleModule } from "@angular2-material/button-toggle";
@@ -46,7 +47,8 @@ import { HomeComponent } from './home.component';
     MdListModule.forRoot(),
     MdButtonToggleModule.forRoot(),
     MdGridListModule.forRoot(),
-    Ng2FileInputModule.forRoot()
+    Ng2FileInputModule.forRoot(),
+    MyDatePickerModule
     // ImageUploadModule.forRoot()
     // FileDropModule
   ],
