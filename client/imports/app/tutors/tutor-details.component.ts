@@ -21,10 +21,14 @@ import { Tutors } from '../../../../both/collections/tutors.collection';
 import { Tutor } from  '../../../../both/models/tutor.model';
 
 import template from './tutor-details.component.html';
+import {IMyOptions} from 'mydatepicker';
+
+import style from './tutor-details.component.scss';
 
 @Component({
   selector: 'tutor-details',
-  template
+  template,
+  styles: [style]
 })
 @InjectUser('user')
 export class TutorDetailsComponent implements OnInit, OnDestroy {
@@ -58,6 +62,19 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute
   ) {}
+
+  private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'dd.mm.yyyy',
+        inline: true,
+        disableDateRanges: [{ begin: {year: this.today.getFullYear(), month: this.today.getMonth()-2, day: this.today.getDate()}, end: {year: this.today.getFullYear(),
+           month: this.today.getMonth()+1, day: this.today.getDate()-1} },{ begin: {year: this.today.getFullYear(),month: this.today.getMonth()+1, day: this.today.getDate()+7}, 
+           end: {year: this.today.getFullYear(),month: this.today.getMonth()+2, day: this.today.getDate()} }]
+  };
+
+    // Initialized to specific date (09.10.2018).
+    private model: Object = { date: { year: 2018, month: 10, day: 9 } };
+
 
   ngOnInit() {
     console.log(this.today);
@@ -145,9 +162,14 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeDay(i : number): void{
-    console.log(i);
-    this.day = i;
+
+  onDateChanged(event: IMyDateModel) {
+    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    const utc1 = Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
+    const utc2 = Date.UTC(event.jsdate.getFullYear(), event.jsdate.getMonth(), event.jsdate.getDate());
+    const diff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+    const i = diff;
+    this.day = diff;
     this.today_show.setDate(this.today.getDate()+i);
     for(var j = 0; j < 24; j++) {
       if(this.tutorSchedule[i][j]==1){
@@ -160,6 +182,7 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
       // TODO Handle if the slot is already booked
     }
   }
+
 
   addSlot(): void{
     this.lastUpdateDate = this.today;

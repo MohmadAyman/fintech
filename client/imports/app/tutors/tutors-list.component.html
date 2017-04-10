@@ -13,7 +13,9 @@
     <li class="list-group-item">  <h5 class="card-text" >Price: {{tutor.hourly_rating}}$/Hour</h5></li>
       <li class="list-group-item">  <button  type="button" class="btn btn-success">Book Class</button></li>
           
-        <li class="list-group-item"><button type="button" class="btn btn-link btn-sm">Book Free Trial!</button></li>
+        <!--<li class="list-group-item"><button type="button" (click)="booktrial(tutor)" class="btn btn-link btn-sm">Book Free Trial!</button></li>-->
+    <li class="list-group-item"><button type="button" [routerLink]="['/tutors', tutor._id]" class="btn btn-link btn-sm">Book Free Trial!</button></li>
+        
   </ul>
 
         <button [hidden]="!isAdmin" (click)="removeTutor(tutor)">X</button>

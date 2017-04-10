@@ -46,6 +46,12 @@ export class TutorsListComponent {
       Tutors.remove(tutor._id);
     }
 
+    booktrial(tutor: Tutor): void{
+      if(Meteor.userId()){
+        window.location.href = '/tutors/' + tutor._id;
+      }
+    }
+
     ngOnDestroy() {
       // this.classesSub.unsubscribe();
       // this.paramsSub.unsubscribe();
