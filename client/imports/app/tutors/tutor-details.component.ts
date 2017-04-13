@@ -119,7 +119,6 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
       }
  });
 
-  console.log(this.colorsSched);
   this.tutorSub = MeteorObservable.subscribe('users').subscribe(() => {
       this.tutor_user_email=Users.findOne(this.tutorAsUserId).emails[0].address;
       this.mailtoTutor="mailto:"+ this.tutor_user_email;
@@ -193,7 +192,7 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
                 , lastUpdateDate: this.lastUpdateDate }
           });
     alert("You've succefuly added free time slots to your callender");
-    // window.location.href = 'confirm-booking/'+this.tutorId+'/'+i;
+    window.location.reload();
   }
 
   ngOnDestroy() {

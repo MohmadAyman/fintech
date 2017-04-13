@@ -9,7 +9,7 @@ import { Tutors } from '../../../../both/collections/tutors.collection';
 import { Tutor } from  '../../../../both/models/tutor.model';
  
 import template from './tutors-list.component.html';
- 
+
 @Component({
   selector: 'tutors-list',
   template
@@ -47,9 +47,9 @@ export class TutorsListComponent {
     }
 
     booktrial(tutor: Tutor): void{
-      if(Meteor.userId()){
-        window.location.href = '/tutors/' + tutor._id;
-      }
+      // if(Meteor.userId()){
+      //   window.location.href = '/tutors/' + tutor._id;
+      // }
     }
 
     ngOnDestroy() {

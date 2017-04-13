@@ -176,6 +176,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   }
 
   bookClass(): void{
+
     if(!this.user_skype_email){
       alert('Please enter your skype username so the teatch can contact you :)');
     }else{
