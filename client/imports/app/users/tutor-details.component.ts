@@ -7,6 +7,7 @@ import { MeteorObservable } from 'meteor-rxjs';
 import { InjectUser } from "angular2-meteor-accounts-ui";
 import {ROUTER_DIRECTIVES, Router, Location} from "angular2/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CreditCardValidator } from 'ng2-cc-library';
 
 import { Requests } from '../../../../both/collections/requests.collection';
 import { Request } from '../../../../both/models/request.model';
@@ -82,9 +83,13 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   tutorSchedule: number[][] = new Array();
   colorsSched: string[][] = new Array();
 
+  amount: number=0;
 
   checkDetails: string[]=new Array(3);
   payment_form: FormGroup;
+  payment_form_2: FormGroup;
+  submitted: boolean = false;
+
   // cc
   cardNumber: string;
   expiryMonth: string;
@@ -109,6 +114,11 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     private model: Object = { date: { year: 2018, month: 10, day: 9 } };
   
   ngOnInit() {
+    this.payment_form_2 = this.formBuilder.group({
+      creditCard: ['', [<any>CreditCardValidator.validateCCNumber]],
+      expDate: ['', [<any>CreditCardValidator.validateExpDate]],
+      cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]] 
+    });
 
   this.payment_form = this.formBuilder.group({
       cardNumber: ['', Validators.required],
@@ -137,6 +147,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     this.tutorAsUserId=this.tutor.userId;
     this.tutorSchedule=this.tutor.times;
     // console.log(this.tutorSchedule);
+    this.amount = this.tutor.hourly_rating;
     
     for (var i = 0; i < 7; i++) {
         for(var j = 0; j < 24; j++) {
@@ -218,7 +229,6 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   CheckoutFn():void{
     if (this.payment_form.valid) {
       console.log('payment form valid')
-      const amount = this.tutor.hourly_rating;
       Stripe.card.createToken({
         number: this.payment_form.value.cardNumber,
         cvc: this.payment_form.value.cvc,
@@ -231,18 +241,14 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
         Meteor.call('chargeCard', stripeToken, amount);
       });
     }
-
-    // add the user skype user name to the class
-    // Classes.insert(Object.assign({ userId: Meteor.userId(),
-    //   tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
   }
 
   GoToCheckOut(): void{
-    if(!this.user_skype_email){
-      alert('Please enter your skype username so the teatch can contact you :)');
-    }else{
-      alert('you are now registered in this class :)');
-    }
+    // if(!this.user_skype_email){
+    //   alert('Please enter your skype username so the teatch can contact you :)');
+    // }else{
+    //   alert('you are now registered in this class :)');
+    // }
     console.log(this.slot);
     console.log(this.tutorSchedule)
     this.tutorSchedule[this.day][this.slot]=2;
@@ -250,6 +256,32 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
               $set:{times: this.tutorSchedule }
           });
     this.checkout=true;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    let m = this.payment_form_2.value.expDate[0]+this.payment_form_2.value.expDate[1];
+    let y = this.payment_form_2.value.expDate[5]+this.payment_form_2.value.expDate[6];
+    if (this.payment_form_2.valid) {
+        Stripe.card.createToken({
+          number: this.payment_form_2.value.creditCard,
+          cvc: this.payment_form_2.value.cvc,
+          exp_month: m,
+          exp_year: y
+        }, function(status, response) {
+          console.log(status);
+          console.log(response);
+          stripeToken = response.id;
+          Meteor.call('chargeCard', stripeToken, this.amount);
+        });
+        // if(sucess){
+        // add the user skype user name to the class
+          // Classes.insert(Object.assign({ userId: Meteor.userId(),
+          //   tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
+        //}
+    }
+
+
   }
 
   ngOnDestroy() {

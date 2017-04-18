@@ -17,6 +17,8 @@ import { MdCheckboxModule } from "@angular2-material/checkbox";
 import {MdListModule} from "@angular2-material/list";
 // import { FileDropModule } from "angular2-file-drop";
 // import { ImageUploadModule } from 'angular2-image-upload';
+import { CreditCardDirectivesModule } from 'ng2-cc-library'
+
 import { Ng2FileInputModule } from 'ng2-file-input'; // <-- import the module
 import { MyDatePickerModule } from 'mydatepicker';
 import { sw } from 'sweetalert2'
@@ -51,7 +53,8 @@ import { HomeComponent } from './home.component';
     MdButtonToggleModule.forRoot(),
     MdGridListModule.forRoot(),
     Ng2FileInputModule.forRoot(),
-    MyDatePickerModule
+    MyDatePickerModule,
+    CreditCardDirectivesModule
     // ImageUploadModule.forRoot()
     // FileDropModule
   ],

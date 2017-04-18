@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Meteor } from 'meteor/meteor';
+import { CreditCardValidator } from 'ng2-cc-library';
 
 // import { AccountsModule } from 'angular2-meteor-accounts-ui';
 
@@ -33,7 +34,8 @@ export class TutorsFormComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       name: ['', Validators.required],
       hourly_rating: ['', Validators.required],
-      language: ['', Validators.required]
+      language: ['', Validators.required],
+      creditCard: ['', [<any>CreditCardValidator.validateCCNumber]]
     });
   }
  
