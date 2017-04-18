@@ -16,6 +16,7 @@ import { HomeComponent } from './home.component';
 import { AvilableClasses } from './users/active-classes.component';
 import { ThanksComponent} from './users/thanks.component';
 import { TutorDetailsComponentUser } from './users/tutor-details.component';
+// import { StripeFormComponent } from './users/stripe.component';
 
 
 export const routes: Route[] = [
@@ -35,4 +36,5 @@ export const routes: Route[] = [
   { path: 'avilable-classes', component: AvilableClasses},
   { path: 'tutors/:tutorId', component: TutorDetailsComponentUser},
   { path: 'tutor/:tutorId', component: TutorDetailsComponent}
+  // { path: 'stripe', component: StripeFormComponent }
  ];

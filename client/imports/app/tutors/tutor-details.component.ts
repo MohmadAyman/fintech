@@ -177,7 +177,7 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
         this.colorsSched[i][j]='green';
       }else{
         this.colorsSched[i][j]='red';
-      }
+      } 
       // TODO Handle if the slot is already booked
     }
   }

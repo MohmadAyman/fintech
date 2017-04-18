@@ -19,6 +19,8 @@ import {MdListModule} from "@angular2-material/list";
 // import { ImageUploadModule } from 'angular2-image-upload';
 import { Ng2FileInputModule } from 'ng2-file-input'; // <-- import the module
 import { MyDatePickerModule } from 'mydatepicker';
+import { sw } from 'sweetalert2'
+
 
 import {MdGridListModule} from '@angular2-material/grid-list';
 import { MdButtonToggleModule } from "@angular2-material/button-toggle";
@@ -29,6 +31,7 @@ import { TUTOR_DECLARATIONS } from './tutors';
 import { USER_DECLARATIONS } from './users';
 import { CommDeclerations } from './communication';
 import { HomeComponent } from './home.component';
+
 
 
 @NgModule({

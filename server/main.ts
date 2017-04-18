@@ -20,6 +20,20 @@ Meteor.startup(() => {
         }
     );
 });
+Meteor.methods({
+  'chargeCard': function(stripeToken, amount) {
+    console.log(stripeToken);
+    var Stripe = StripeAPI(Meteor.settings.private.stripe.testSecretKey);
+    console.log('charge card called');
+    Stripe.charges.create({
+      amount: amount,
+      currency: 'usd',
+      source: stripeToken
+    }, function(err, charge) {
+      console.log(err, charge);
+    });
+  }
+});
 // Meteor.startup(() => {
 //     ServiceConfiguration.configurations.upsert(
 //         { service: 'facebook' },

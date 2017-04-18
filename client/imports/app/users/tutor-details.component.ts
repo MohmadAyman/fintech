@@ -6,6 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import { MeteorObservable } from 'meteor-rxjs';
 import { InjectUser } from "angular2-meteor-accounts-ui";
 import {ROUTER_DIRECTIVES, Router, Location} from "angular2/router";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Requests } from '../../../../both/collections/requests.collection';
 import { Request } from '../../../../both/models/request.model';
@@ -25,6 +26,30 @@ import template from './tutor-details.component.html';
 
 import {IMyOptions} from 'mydatepicker';
 
+Meteor.startup(() => {
+    Stripe.setPublishableKey(Meteor.settings.public.stripe.livePublishableKey);
+    var handler = StripeCheckout.configure({
+      key: Meteor.settings.public.stripe.testPublishableKey,
+      token: function(token) {}
+    });
+});
+ 
+
+// ccNum = 12223456712345;
+// cvc = 123;
+// expMo = 11;
+// expYr = 18;
+
+// Stripe.card.createToken({
+// 	number: ccNum,
+// 	cvc: cvc,
+// 	exp_month: expMo,
+// 	exp_year: expYr,
+// }, function(status, response) {
+// 	stripeToken = response.id;
+// 	Meteor.call('chargeCard', stripeToken);
+//   console.log('charged');
+// });
 
 @Component({
   selector: 'tutor-details',
@@ -33,7 +58,7 @@ import {IMyOptions} from 'mydatepicker';
 })
 @InjectUser('user')
 export class TutorDetailsComponentUser implements OnInit, OnDestroy {
-  user_skype_email: string;
+ user_skype_email: string;
   today: Date = new Date();
   today_show: Date = new Date();
   tutorId: string;
@@ -52,15 +77,23 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   class: Class_;
   tutorClasses: Observable<Class_[]>;
   user: Meteor.User;
-  subbed: boolean;
-
-
+  checkout: boolean=false;
   a_day: number[] = new Array(24);
   tutorSchedule: number[][] = new Array();
   colorsSched: string[][] = new Array();
 
+
+  checkDetails: string[]=new Array(3);
+  payment_form: FormGroup;
+  // cc
+  cardNumber: string;
+  expiryMonth: string;
+  expiryYear: string;
+  cvc: string;
+
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) {}
 
   private myDatePickerOptions: IMyOptions = {
@@ -75,9 +108,14 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     // Initialized to specific date (09.10.2018).
     private model: Object = { date: { year: 2018, month: 10, day: 9 } };
   
-    constructor() { }
-
   ngOnInit() {
+
+  this.payment_form = this.formBuilder.group({
+      cardNumber: ['', Validators.required],
+      expiryMonth: ['', Validators.required],
+      expiryYear: ['', Validators.required],
+      cvc: ['', Validators.required]
+    });
     for (var i = 0; i < 24; i++) {
         this.color[i]='green';
     }
@@ -93,6 +131,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
           this.tutorSub.unsubscribe();
         }
     });
+
   this.tutorSub = MeteorObservable.subscribe('tutors').subscribe(() => {
     this.tutor=Tutors.findOne(this.tutorId);
     this.tutorAsUserId=this.tutor.userId;
@@ -175,8 +214,30 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     }
   }
 
-  bookClass(): void{
 
+  CheckoutFn():void{
+    if (this.payment_form.valid) {
+      console.log('payment form valid')
+      const amount = this.tutor.hourly_rating;
+      Stripe.card.createToken({
+        number: this.payment_form.value.cardNumber,
+        cvc: this.payment_form.value.cvc,
+        exp_month: this.payment_form.value.expiryMonth,
+        exp_year: this.payment_form.value.expiryYear
+      }, function(status, response) {
+        console.log(status);
+        console.log(response.error.message);
+        stripeToken = response.id;
+        Meteor.call('chargeCard', stripeToken, amount);
+      });
+    }
+
+    // add the user skype user name to the class
+    // Classes.insert(Object.assign({ userId: Meteor.userId(),
+    //   tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
+  }
+
+  GoToCheckOut(): void{
     if(!this.user_skype_email){
       alert('Please enter your skype username so the teatch can contact you :)');
     }else{
@@ -188,10 +249,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     Tutors.update(this.tutorId, {
               $set:{times: this.tutorSchedule }
           });
-    // add the user skype user name to the class
-    Classes.insert(Object.assign({ userId: Meteor.userId(),
-      tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
-    window.location.href = 'thanks';
+    this.checkout=true;
   }
 
   ngOnDestroy() {

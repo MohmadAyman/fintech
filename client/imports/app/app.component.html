@@ -13,7 +13,7 @@
   </div>
   <span>{{ user | displayName }}</span>
 </md-toolbar>-->
-<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -34,9 +34,6 @@
       <li class="nav-item">
         <a class="nav-link" href="tutors">Tutors</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
     </ul>
 
     <div [hidden]="user">
@@ -45,6 +42,7 @@
 
     </div>
     <div [hidden]="!user">
+      <!--<span style="color:aliceblue;">{{ user | displayName }}</span>-->
       <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/classesList']">Your Classes</button>
       <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
       
