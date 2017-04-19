@@ -116,7 +116,6 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     private model: Object = { date: { year: 2018, month: 10, day: 9 } };
   
   ngOnInit() {
-
     this.imagesSubs = MeteorObservable.subscribe('images').subscribe();
 
     this.payment_form_2 = this.formBuilder.group({
@@ -148,13 +147,26 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     });
 
   this.tutorSub = MeteorObservable.subscribe('tutors').subscribe(() => {
+
     this.tutor=Tutors.findOne(this.tutorId);
     this.tutorAsUserId=this.tutor.userId;
     this.tutorSchedule=this.tutor.times;
-    // console.log(this.tutorSchedule);
     this.amount = this.tutor.hourly_rating;
+
+    let _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    let utc1 = Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
+    let utc2 = Date.UTC(this.tutor.lastUpdateDate.getFullYear(), this.tutor.lastUpdateDate.getMonth(), this.tutor.lastUpdateDate.getDate());
+    let last_update_diff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+    // console.log(last_update_diff);
+    // console.log(this.tutorSchedule);
     
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < last_update_diff; i++) {
+        for(var j = 0; j < 24; j++) {
+          this.colorsSched[i][j]='blue';
+        }
+      }
+
+    for (var i = last_update_diff; i < 7; i++) {
         for(var j = 0; j < 24; j++) {
           // console.log(this.tutorSchedule[i][j]);
           if(this.tutorSchedule[i][j]==1){
@@ -190,13 +202,6 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     return false;
   }
 
-  addClass(r: Request): void{
-    Classes.insert(Object.assign({ userId: Meteor.userId() 
-        ,startDate: this.today_show, startTime: r.startTime, userId:r.userId,
-        userGmail: r.userGmail, userSkype: r.userSkype}));
-    Requests.remove(r._id);
-  }
-
   toggleSlot(i: number): void {
     this.today_show.setHours(i,0,0);
     this.slot = i;
@@ -214,11 +219,11 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   }
 
   onDateChanged(event: IMyDateModel) {
-    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-    const utc1 = Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
-    const utc2 = Date.UTC(event.jsdate.getFullYear(), event.jsdate.getMonth(), event.jsdate.getDate());
-    const diff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
-    const i = diff;
+    let _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    let utc1 = Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
+    let utc2 = Date.UTC(event.jsdate.getFullYear(), event.jsdate.getMonth(), event.jsdate.getDate());
+    let diff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+    let i = diff;
     this.day = diff;
     this.today_show.setDate(this.today.getDate()+i);
     for(var j = 0; j < 24; j++) {
@@ -265,6 +270,8 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    let success= false;
+    let free= true;
     this.submitted = true;
     let m = this.payment_form_2.value.expDate[0]+this.payment_form_2.value.expDate[1];
     let y = this.payment_form_2.value.expDate[5]+this.payment_form_2.value.expDate[6];
@@ -278,17 +285,29 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
           console.log(status);
           console.log(response);
           stripeToken = response.id;
-          Meteor.call('chargeCard', stripeToken, this.amount);
+          // Meteor.call('chargeCard', stripeToken, this.amount);
+          Meteor.call('chargeCard', stripeToken, 3);
         });
-        // if(sucess){
-        // add the user skype user name to the class
-          // Classes.insert(Object.assign({ userId: Meteor.userId(),
-          //   tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
-        //}
+
+        let id = Classes.findOne({
+          userId:{
+            $elemMatch:{$eq: Meteor.userId()}
+          }
+        })._id;
+
+        if(id){
+          free=false;
+        }
     }
 
+        if(free||success){
+        //add the user skype user name to the class
+          Classes.insert(Object.assign({ userId: Meteor.userId(),
+            tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
+            window.location.href = '/thanks';
+        }
+    }
 
-  }
 
   ngOnDestroy() {
     this.reqSub.unsubscribe();

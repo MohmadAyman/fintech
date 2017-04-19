@@ -106,7 +106,15 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
     console.log(this.lastUpdateDate);
     this.diffrenceDays = this.lastUpdateDate.getDate() - this.today.getDate();
     console.log(this.diffrenceDays);
-    for (var i = 0; i < 7; i++) {
+    
+        let _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    let utc1 = Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
+    let utc2 = Date.UTC(this.tutor.lastUpdateDate.getFullYear(), this.tutor.lastUpdateDate.getMonth(), this.tutor.lastUpdateDate.getDate());
+    let last_update_diff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+    // console.log(last_update_diff);
+    // console.log(this.tutorSchedule);
+    
+    for (var i = 0; i < last_update_diff; i++) {
         for(var j = 0; j < 24; j++) {
           if(this.tutorSchedule[i][j]==1){
             this.colorsSched[i][j]='blue';
@@ -117,6 +125,12 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
           }
         }
       }
+
+    for (var i = last_update_diff; i < 7; i++) {
+      for(var j = 0; j < 24; j++) {
+        this.colorsSched[i][j]='green';
+      }
+    }
  });
 
   this.tutorSub = MeteorObservable.subscribe('users').subscribe(() => {

@@ -1,17 +1,17 @@
 <div *ngIf="!checkout">
-  <div class="row">
+  <div class="col">
   <div *ngIf="tutor" style="margin-left:2%;margin-right:auto;margin-top:2%;margin-bottom:2%">
     <img class="img-rounded" *ngIf="tutor.images && tutor.images.length > 0" [src]="tutor | displayMainImage">
 
   <div>
     <label >Name: <b style="margin-left:30%;">  {{tutor.name}} </b> </label>
     <br>
-    <label>Hourly rating: <b style="margin-left:30%;">  {{tutor.hourly_rating}} $ </b> </label>
+    <label>Hourly rating: <b style="margin-left:30%;">  {{tutor.hourly_rating}}$ </b> </label>
     <br>
     <label>Language: <b style="margin-left:30%;"> {{tutor.language}} </b> </label>
+    <br>
   </div>
 
-  </div>
   </div>
     <!--<ul>
     <li*ngFor="let class of tutorClasses| async">
@@ -25,22 +25,24 @@
         </ul>
     </li>
     </ul>-->
-<!--Choose the day-->
 
-  <div style="centered-top:50%;margin-top:7%;margin-left:5%;">
+<br>
+ Select day:
+<br>
+
+Choose the day
+<div style="margin-left:35%;margin-right:35%;">
+  {{today_show}}
   <form #myForm="ngForm" novalidate>
       <my-date-picker name="mydate" [options]="myDatePickerOptions"
                       [(ngModel)]="model" (dateChanged)="onDateChanged($event)" required></my-date-picker>
   </form>
-  </div>
-<div class="row">
+</div>
 
-<!--<div style="margin-left:35%;margin-right:35%;">-->
-  <!--{{today_show}}-->
-
-
-<!--<md-button-toggle-group style="margin-left:35%;margin-right:35%;" name="alignment" [(ngModel)]="day">
-  <md-button-toggle-group style="margin-left:auto;margin-right:auto;margin-top:8%;margin-bottom:8%" name="noneed">
+<!--
+<br>
+<md-button-toggle-group name="alignment" [(ngModel)]="day">
+  <md-button-toggle-group name="noneed">
     <md-button-toggle (click)="changeDay(0)" value="0">1</md-button-toggle>
     <md-button-toggle (click)="changeDay(1)" value="1">2</md-button-toggle>
     <md-button-toggle (click)="changeDay(2)" value="2">3</md-button-toggle>
@@ -50,29 +52,13 @@
     <md-button-toggle (click)="changeDay(6)" value="6">7</md-button-toggle>
     </md-button-toggle-group>
 </md-button-toggle-group>-->
-<!--<br>-->
-  <!--<md-grid-list cols="6" rowHeight="50px">
-    <md-grid-tile *ngFor="let tile of tutorSchedule[day]; let i=index">                     
-            <button align-items:center  [ngStyle]="{'background-color': colorsSched[day][i], 'border-color':colorsSched[day][i]}" style="border-radius: 12px;"  (click)="toggleSlot(i)" type="button" 
-            [disabled]="colorsSched[day][i]=='red'">{{i%12}}                       
-            </button>
-      </md-grid-tile>
-  </md-grid-list>-->
-
-<!--<div class='circle-container'>
-    <button class="deg0" [ngStyle]="{'background-color': colorsSched[day][0], 'border-color':colorsSched[day][0]}"   (click)="toggleSlot(0)"  
-            [disabled]="colorsSched[day][0]=='red'"></button>
-    <button class="deg30" [ngStyle]="{'background-color': colorsSched[day][1], 'border-color':colorsSched[day][1]}"  (click)="toggleSlot(1)" 
-            [disabled]="colorsSched[day][1]=='red'"></button>
-    <button class="deg60" [ngStyle]="{'background-color': colorsSched[day][2], 'border-color':colorsSched[day][2]}"  (click)="toggleSlot(2)"  
-            [disabled]="colorsSched[day][2]=='red'"></button>
-    <button class="deg90" [ngStyle]="{'background-color': colorsSched[day][3], 'border-color':colorsSched[day][3]}"  (click)="toggleSlot(3)"  
-            [disabled]="colorsSched[day][3]=='red'"></button>
-    <button class="deg120" [ngStyle]="{'background-color': colorsSched[day][4], 'border-color':colorsSched[day][4]}"  (click)="toggleSlot(4)"  
-            [disabled]="colorsSched[day][4]=='red'"></button> 
-</div>-->
+{{today_show}}
+<br>
 
 
+Make your avilable hours blue:
+
+<div class="row">
 
 <ul class='circle-container'>
      <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][2], 'border-color':colorsSched[day][2]}" style="border-radius: 12px;"  (click)="toggleSlot(2)" type="button" 
@@ -153,6 +139,10 @@
             </button></li>
    <li>PM</li>
 </ul>
+</div>
+<button type="button" align:center (click)="addSlot()" class="btn btn-success btn-lg">Add</button>
+<br>
+<br>
 
 </div>
     <br>
