@@ -1,4 +1,6 @@
 <!--<div class="row">-->
+<br>
+<div>
 <div class="card-deck">
   <div class="card" *ngFor="let tutor of tutors| async">
     <div class="card-block">
@@ -18,4 +20,5 @@
 
   <button [hidden]="!isAdmin" (click)="removeTutor(tutor)">X</button>
   </div>
+</div>
 </div>

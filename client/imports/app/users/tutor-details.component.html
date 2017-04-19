@@ -1,10 +1,17 @@
 <div *ngIf="!checkout">
+  <div class="row">
   <div *ngIf="tutor" style="margin-left:2%;margin-right:auto;margin-top:2%;margin-bottom:2%">
+    <img class="img-rounded" *ngIf="tutor.images && tutor.images.length > 0" [src]="tutor | displayMainImage">
+
+  <div>
     <label >Name: <b style="margin-left:30%;">  {{tutor.name}} </b> </label>
     <br>
     <label>Hourly rating: <b style="margin-left:30%;">  {{tutor.hourly_rating}} $ </b> </label>
     <br>
     <label>Language: <b style="margin-left:30%;"> {{tutor.language}} </b> </label>
+  </div>
+
+  </div>
   </div>
     <!--<ul>
     <li*ngFor="let class of tutorClasses| async">
@@ -18,14 +25,19 @@
         </ul>
     </li>
     </ul>-->
-Choose the day
-<div style="margin-left:35%;margin-right:35%;">
-  {{today_show}}
+<!--Choose the day-->
+
+  <div style="centered-top:50%;margin-top:7%;margin-left:5%;">
   <form #myForm="ngForm" novalidate>
       <my-date-picker name="mydate" [options]="myDatePickerOptions"
                       [(ngModel)]="model" (dateChanged)="onDateChanged($event)" required></my-date-picker>
   </form>
-</div>
+  </div>
+<div class="row">
+
+<!--<div style="margin-left:35%;margin-right:35%;">-->
+  <!--{{today_show}}-->
+
 
 <!--<md-button-toggle-group style="margin-left:35%;margin-right:35%;" name="alignment" [(ngModel)]="day">
   <md-button-toggle-group style="margin-left:auto;margin-right:auto;margin-top:8%;margin-bottom:8%" name="noneed">
@@ -38,8 +50,7 @@ Choose the day
     <md-button-toggle (click)="changeDay(6)" value="6">7</md-button-toggle>
     </md-button-toggle-group>
 </md-button-toggle-group>-->
-<br>
-Choose the hour of the day:
+<!--<br>-->
   <!--<md-grid-list cols="6" rowHeight="50px">
     <md-grid-tile *ngFor="let tile of tutorSchedule[day]; let i=index">                     
             <button align-items:center  [ngStyle]="{'background-color': colorsSched[day][i], 'border-color':colorsSched[day][i]}" style="border-radius: 12px;"  (click)="toggleSlot(i)" type="button" 
@@ -62,7 +73,6 @@ Choose the hour of the day:
 </div>-->
 
 
-<div class="row">
 
 <ul class='circle-container'>
      <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][2], 'border-color':colorsSched[day][2]}" style="border-radius: 12px;"  (click)="toggleSlot(2)" type="button" 

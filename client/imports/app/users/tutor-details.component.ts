@@ -68,7 +68,9 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   day: number=0;
   tutorAsUserId: string;
   tutor: Tutor;
-  paramsSub: Subscription;
+  paramsSub: Subscription;  
+  imagesSubs: Subscription;
+ 
   classesSub: Subscription;
   reqSub: Subscription;
   tutorSub: Subscription;
@@ -114,6 +116,9 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     private model: Object = { date: { year: 2018, month: 10, day: 9 } };
   
   ngOnInit() {
+
+    this.imagesSubs = MeteorObservable.subscribe('images').subscribe();
+
     this.payment_form_2 = this.formBuilder.group({
       creditCard: ['', [<any>CreditCardValidator.validateCCNumber]],
       expDate: ['', [<any>CreditCardValidator.validateExpDate]],
@@ -161,6 +166,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
       }
     // console.log(this.colorsSched);
  });
+
 
   console.log(this.colorsSched);
   this.tutorSub = MeteorObservable.subscribe('users').subscribe(() => {
@@ -289,6 +295,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     this.classesSub.unsubscribe();
     this.paramsSub.unsubscribe();
     this.tutorSub.unsubscribe();
+    this.imagesSubs.unsubscribe();
   }
 
 }
