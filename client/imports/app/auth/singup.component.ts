@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit {
   constructor(private router: Router, private zone: NgZone, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+   Accounts.ui.config({requestPermissions:{google:['https://www.googleapis.com/auth/calendar']}, forceApprovalPrompt: {google: true}, requestOfflineToken: {google: true}});
     this.signupForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],

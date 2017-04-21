@@ -59,7 +59,9 @@ Meteor.startup(() => {
 })
 @InjectUser('user')
 export class TutorDetailsComponentUser implements OnInit, OnDestroy {
- user_skype_email: string;
+  // gapi: any;
+
+  user_skype_email: string;
   today: Date = new Date();
   today_show: Date = new Date();
   tutorId: string;
@@ -116,6 +118,11 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     private model: Object = { date: { year: 2018, month: 10, day: 9 } };
   
   ngOnInit() {
+    declare var gapi: any;
+    console.log(gapi);
+
+
+    console.log(Meteor.userId());
     this.imagesSubs = MeteorObservable.subscribe('images').subscribe();
 
     this.payment_form_2 = this.formBuilder.group({
@@ -307,6 +314,64 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
             window.location.href = '/thanks';
         }
     }
+
+  addToCalendnaer():void{
+  // let dateString = "2010-08-09 01:02:03"
+  // , reggie = /(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/
+  // , [, year, month, day, hours, minutes, seconds] = reggie.exec(dateString)
+  // , dateObject = new Date(year, month-1, day, hours, minutes, seconds);
+  // let utc1 = Date.UTC(this.today_show.getFullYear(), this.today_show.getMonth(), this.today_show.getDate());
+  // console.log(utc1);
+  // console.log(this.today_show[1]);
+  let user = Meteor.users.findOne({_id: Meteor.userId()});
+    
+    const event = {
+      'summary': 'Quran Class',
+      'location': 'Online- Skype',
+      'description': '45min class',
+      'start':{
+        'dateTime': this.today_show.toISOString(),
+        'timeZone': 'America/Los_Angeles'},
+      'end':{
+        'dateTime': '2017-07-28T17:00:00-07:00',
+        'timeZone': 'America/Los_Angeles'}
+      };
+    GoogleApi.post('calendar/v3/calendars/primary/events', { data: event },function (error, result){
+      console.log(error);
+      console.log(result);
+    });
+      
+      
+    // GoogleApi.get('calendar/v3/calendars/primary/events', {
+    //       user: user,
+    //       params: {
+    //         'calendarId': 'primary',
+    //         'timeMin': new Date().toISOString(),
+    //         // 'timeMax': new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
+    //         'showDeleted': false,
+    //         'singleEvents': true,
+    //         'orderBy': 'startTime',
+    //         'access_type': 'offline'
+    //       }
+    //     }, function (error, result) {
+    //       console.log(result);
+    //       console.log(error);
+    //       if (result) {
+    //         console.log(result);
+    //           Events.insert({
+    //             startDate: this.today.toDate(),
+    //             endDate: this.today.toDate()+1,
+    //             calendar: 'primary',
+    //             title: event.summary,
+    //             location: 'poblacion',
+    //             description: 'texto'
+    //           });
+    //       }
+    //       if(error){
+    //         console.error(error);
+    //       }
+    //     });
+  }
 
 
   ngOnDestroy() {

@@ -70,7 +70,9 @@ export class LoginComponent implements OnInit {
   googleLogin():void{
 
     Meteor.loginWithGoogle({
-        requestPermissions: ['email']
+        requestPermissions: ['email','https://www.googleapis.com/auth/calendar'],
+        forceApprovalPrompt: true,
+        requestOfflineToken: true
         }, (error) => {
           if (error) {
             Session.set('errorMessage', error.reason || 'Unknown error');
