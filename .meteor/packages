@@ -36,3 +36,4 @@ mrgalaxy:stripe
 momentjs:moment
 random
 force-ssl
+percolate:google-api

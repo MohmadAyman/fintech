@@ -10,6 +10,7 @@ export interface Tutor extends CollectionObject{
   lastUpdateDate?: Date;
   times?: number[];
   images?: string[];
+  creditCardNumber?: string;
 }
 
 interface Schedule {
