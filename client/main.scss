@@ -1,4 +1,4 @@
-@import "{}/node_modules/bootstrap/scss/bootstrap.scss";
+@import "{}/node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // @import "{}/node_modules/angular2-meteor-accounts-ui/build/login-buttons.scss";
 
 $color1 : #2F2933;
@@ -20,6 +20,7 @@ html, body {
 body {
   background-color: #f8f8f8;
   font-family: 'Muli', monospace;
+  padding-top: 70px;
   font-style: italic;
 }
 
@@ -29,15 +30,18 @@ body {
 }
 
 .navbar {
-  background-color: $color4;
+  // padding-bottom: 50px;
+  background-color: $color1;
   border-bottom: #eee 1px solid;
   color: $color1;
   font-family: 'Muli', sans-serif;
   a {
     color: $color7;
     text-decoration: none !important;
+    toolbar-title{
+      color: $color7;
+    }  
   }
-
   .navbar-right-container {
     position: absolute;
     top: 17px;

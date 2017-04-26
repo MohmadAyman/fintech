@@ -7,49 +7,9 @@ body {
   margin-bottom: 60px;
 }
 
-// #footer {
-//   position: absolute;
-//   bottom: 0;
-//   width: 100%;
-//   /* Set the fixed height of the footer here */
-//   height: 280px;
-//   background: 
-//   /* color overlay */ 
-//     linear-gradient(
-//       rgba(240, 212, 0, 0.45), 
-//       rgba(0, 0, 0, 0.45)
-//     ),
-//     /* image to overlay */
-//     url(http://images.cdn.fotopedia.com/_avPIZmqM3w-7z161LH_268-hd.jpg);
+// .push {
+//   height: 50px;
 // }
-
-
-/* Custom footer CSS
--------------------------------------------------- */
-
-.container {
-  width: auto;
-  max-width: 680px;
-  padding: 0 15px;
-  padding-top: 60px;
-}
-.container .text-muted {
-  margin: 20px 0;
-}
-.footertext {
-  color: #ffffff;
-}
-.wrapper {
-  min-height: 100%;
-
-  /* Equal to height of footer */
-  /* But also accounting for potential margin-bottom of last child */
-  margin-bottom: -50px;
-}
-.footer,
-.push {
-  height: 50px;
-}
 .view {
     height: 100%;
 }
@@ -60,4 +20,9 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+footer {
+    margin: 50px 0;
+    margin-left: 50px;
 }

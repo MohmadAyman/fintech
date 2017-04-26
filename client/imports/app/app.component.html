@@ -13,7 +13,10 @@
   </div>
   <span>{{ user | displayName }}</span>
 </md-toolbar>-->
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+
+
+
+    <!--<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -42,7 +45,7 @@
 
     </div>
     <div [hidden]="!user">
-        <!--<span style="color:aliceblue;">{{ user | displayName }}</span>-->
+        <span style="color:aliceblue;">{{ user | displayName }}</span>
       <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/classesList']">Your Classes</button>
       <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
       
@@ -52,19 +55,87 @@
 </nav>
 
 <br>
-<br>
+<br>-->
+<!--
+<md-toolbar color="primary">
+  <a routerLink="/" class="toolbar-title">Quran</a>
+  <span class="fill-remaining-space"></span>
+  <div [hidden]="user">
+    <a md-button [routerLink]="['/login']" >Login</a>
+    <a md-button [routerLink]="['/signup']">Sign up</a>
+  </div>
+  <div [hidden]="!user">
+    <span>{{ user | displayName }}</span>
+    <button md-button (click)="logout()">Logout</button>
+  </div>
+</md-toolbar>-->
 
+<!--<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>-->
     <!--Intro content-->
     <!--<div class="full-bg-img flex-center">
         
     </div>-->
     <!--/Intro content-->
+ 
+     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Home</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+
+      <ul [hidden]="!user" class="nav navbar-nav navbar-right">
+                
+        <button type="button" class="navbar-right btn btn-default navbar-btn" (click)="logout()">Logout</button>
+        <!--<li><p style="color:aliceblue;">{{ user | displayName }}</p></li>-->
+        
+      </ul>
+      <ul [hidden]="user" class="nav navbar-nav navbar-right">
+            <li><a href="#">Link</a></li>
+            <li>  <a [routerLink]="['/login']" class="navbar-right btn ">Student Sign in</a></li>
+            <li>  <a [routerLink]="['/login']" class="navbar-right btn ">Tutor Sign in</a></li>
+            <li><span>{{ user | displayName }}</span></li>
+      </ul>            
+      </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
     <router-outlet></router-outlet>
 
-      
-    <footer class="footer">
-         <p class="text-muted">This site is expected to be released in late March, right now it is in beta version.</p>
-         <a href="mailto:Mohmmad.khzrag@gmail.com">
-         <p >Email us.</p>  
-      
-     </footer> 
+
+        <!-- Footer -->
+        <!--<footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+                
+            </div>
+        </footer>
+      -->
