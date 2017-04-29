@@ -1,37 +1,59 @@
-<div class="md-content" layout="row" layout-align="center start" layout-fill layout-margin>
-  <div layout="column" flex flex-md="50" flex-lg="50" flex-gt-lg="33" class="md-whiteframe-z2" layout-fill>
-    <md-toolbar class="md-primary" color="primary">
-      Sign in
-    </md-toolbar>
+		<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Sign in</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					
+          <form class="form-horizontal" [formGroup]="loginForm" #f="ngForm" (ngSubmit)="signup()">
+          <div class="form-group ">
+            <button type="button" (click)="googleLogin()" class="btn btn-danger btn-sm btn-block login-button">Signin with Google</button>
+          </div>
+						
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" formControlName="email" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
 
-    <div layout="column" layout-margin layout-padding>
-      <div layout="row" layout-margin>
-        <p class="md-body-2"> Sign in with your email</p>
-      </div>
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" formControlName="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
 
-      <form [formGroup]="loginForm" #f="ngForm" (ngSubmit)="login()"
-            layout="column" layout-fill layout-padding layout-margin>
 
-        <md-input formControlName="email" type="email" placeholder="Email"></md-input>
-        <md-input formControlName="password" type="password" placeholder="Password"></md-input>
 
-        <div layout="row" layout-align="space-between center">
-          <a md-button [routerLink]="['/recover']">Forgot password?</a>
-          <button md-raised-button class="md-primary" type="submit" aria-label="login">Sign In</button>
-        </div>
-      </form>
-      <button md-raised-button class="md-primary" (click)="googleLogin()" type="submit" aria-label="login">Sign In with Google</button>
-      <div [hidden]="error == ''">
-        <md-toolbar class="md-warn" layout="row" layout-fill layout-padding layout-margin>
-          <p class="md-body-1">{{ error }}</p>
-        </md-toolbar>
-      </div>
+						<div class="form-group ">
+							<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
+						</div>
 
-      <md-divider></md-divider>
-
-      <div layout="row" layout-align="center">
-        <a md-button [routerLink]="['/signup']">Need an account?</a>
-      </div>
-    </div>
-  </div>
-</div>
+            <div [hidden]="error == ''">
+              <md-toolbar class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+                <p class="md-body-1">{{ error }}</p>
+              </md-toolbar>
+            </div>
+       
+        		<div>
+              <a [routerLink]="['/signup']">Need an account?</a>
+            </div>
+       
+            <div>
+              <a [routerLink]="['/recover']">Forgot password?</a>
+            </div>
+        
+					</form>
+				</div>
+			</div>
+		</div>

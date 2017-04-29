@@ -2,6 +2,7 @@ import {Component, OnInit, NgZone} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
 
 import template from './signup.component.html';
 
@@ -16,7 +17,9 @@ export class SignupComponent implements OnInit {
   constructor(private router: Router, private zone: NgZone, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-   Accounts.ui.config({requestPermissions:{google:['https://www.googleapis.com/auth/calendar']}, forceApprovalPrompt: {google: true}, requestOfflineToken: {google: true}});
+    if(Meteor.userId()){
+      window.location.href = '/';
+    }    
     this.signupForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -38,7 +41,13 @@ export class SignupComponent implements OnInit {
             this.error = err;
           });
         } else {
-          this.router.navigate(['/']);
+          Meteor.call( 'sendVerificationLink', ( error, response ) => {
+          if ( error ) {
+            Bert.alert( error.reason, 'danger' );
+          } else {
+            Bert.alert( 'Welcome!', 'success' );
+          }
+        });
         }
       });
     }

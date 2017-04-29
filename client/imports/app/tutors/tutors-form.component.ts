@@ -5,6 +5,9 @@ import { CreditCardValidator } from 'ng2-cc-library';
 
 // import { AccountsModule } from 'angular2-meteor-accounts-ui';
 
+import { Users } from '../../../../both/collections/users.collection';
+import { User } from  '../../../../both/models/user.model';
+
 import { Tutors } from '../../../../both/collections/tutors.collection';
 
 import template from './tutors-form.component.html';
@@ -16,6 +19,7 @@ import template from './tutors-form.component.html';
 
 export class TutorsFormComponent implements OnInit {
   addForm: FormGroup;
+  user: User;
   images: string[] = [];
   a_day: number[] = new Array(24);
   times: number[][] = new Array();
@@ -24,6 +28,9 @@ export class TutorsFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if(Meteor.userId()){
+      this.user = Users.findOne(this.Meteor.userId());
+    }
     for (var i = 0; i < 24; i++) {
         this.a_day[i]=0;
     }
@@ -32,7 +39,7 @@ export class TutorsFormComponent implements OnInit {
     }
   console.log(this.times);
     this.addForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      // name: ['', Validators.required],
       hourly_rating: ['', Validators.required],
       language: ['', Validators.required],
       creditCard: ['', [<any>CreditCardValidator.validateCCNumber]]
@@ -61,8 +68,8 @@ export class TutorsFormComponent implements OnInit {
     if (this.addForm.valid) {
       console.log(this.times);
 
-      Tutors.insert(Object.assign({},this.addForm.value,{ userId: Meteor.userId()
-      ,times: this.times, images: this.images}));
+      Tutors.insert(Object.assign({},this.addForm.value,{ name: this.user.username, userId: Meteor.userId()
+      ,times: this.times, images: this.images, createdAt: new Date()}));
 
       // this.addForm.reset();
     }

@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { MeteorObservable } from 'meteor-rxjs';
 import { Tutors } from '../../../../both/collections/tutors.collection';
 import { Tutor } from  '../../../../both/models/tutor.model';
+// import { Accounts } from 'meteor/accounts-base';
 
 import template from './login.component.html';
 
@@ -25,7 +26,10 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private zone: NgZone, private formBuilder: FormBuilder) {}
 
 
-  ngOnInit() {
+  ngOnInit() {   
+    
+    // Accounts.ui.config({requestPermissions:{google:['https://www.googleapis.com/auth/calendar']}, forceApprovalPrompt: {google: true}, requestOfflineToken: {google: true}});
+
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]

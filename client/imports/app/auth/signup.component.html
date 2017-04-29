@@ -1,37 +1,62 @@
-<div class="md-content" layout="row" layout-align="center start" layout-fill layout-margin>
-  <div layout="column" flex flex-md="50" flex-lg="50" flex-gt-lg="33" class="md-whiteframe-z2" layout-fill>
-    <md-toolbar class="md-primary" color="primary">
-      <p *ngIf="title">
-        {{ title }}
-      </p>
-    </md-toolbar>
+		<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Sign up</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					
+          <form class="form-horizontal" [formGroup]="signupForm" #f="ngForm" (ngSubmit)="signup()">
+          <div class="form-group ">
+            <button type="button" class="btn btn-danger btn-sm btn-block login-button">Signin with Google</button>
+          </div>
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" formControlName="username" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+								</div>
+							</div>
+						</div>
 
-    <div layout="column" layout-fill layout-margin layout-padding>
-      <form [formGroup]="signupForm" #f="ngForm" (ngSubmit)="signup()"
-            layout="column" layout-fill layout-padding layout-margin>
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" formControlName="email" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
 
-        <md-input formControlName="username" type="text" placeholder="User name"></md-input>
-        <md-input formControlName="email" type="email" placeholder="Email"></md-input>
-        <md-input formControlName="password" type="password" placeholder="Password"></md-input>
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" formControlName="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
 
-        <div layout="row" layout-align="space-between center">
-          <button md-raised-button class="md-primary" type="submit" aria-label="login">Sign Up</button>
-        </div>
-      </form>
 
-      <div [hidden]="error == ''">
-        <md-toolbar class="md-warn" layout="row" layout-fill layout-padding layout-margin>
-          <p class="md-body-1">{{ error }}</p>
-        </md-toolbar>
-      </div>
-      <md-divider></md-divider>
 
-      <div layout="row" layout-align="center">
-        <a md-button [routerLink]="['/login']">Already a user?</a>
-      </div>
-    </div>
-  </div>
-</div>
+						<div class="form-group ">
+							<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+						</div>
+
+        		<div>
+                <a [routerLink]="['/login']">Already a user?</a>
+            </div>
+        
+					</form>
+				</div>
+			</div>
+		</div>
 
 <!--<div class="at-form">
   <div class="at-oauth">

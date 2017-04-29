@@ -9,10 +9,14 @@ import { Tutors } from '../../../../both/collections/tutors.collection';
 import { Tutor } from  '../../../../both/models/tutor.model';
  
 import template from './tutors-list.component.html';
+import style from './tutors-list.component.scss';
+
 
 @Component({
   selector: 'tutors-list',
-  template
+  template,
+  styles : [style] 
+
 })
 export class TutorsListComponent {
   tutors: Observable<Tutor[]>;

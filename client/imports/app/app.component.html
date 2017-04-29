@@ -100,10 +100,10 @@
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#services">Services</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="/tutors">Tutors</a>
                     </li>
                 </ul>
 
@@ -114,7 +114,6 @@
         
       </ul>
       <ul [hidden]="user" class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
             <li>  <a [routerLink]="['/login']" class="navbar-right btn ">Student Sign in</a></li>
             <li>  <a [routerLink]="['/login']" class="navbar-right btn ">Tutor Sign in</a></li>
             <li><span>{{ user | displayName }}</span></li>
@@ -139,3 +138,4 @@
             </div>
         </footer>
       -->
+        <!-- /.row -->

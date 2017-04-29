@@ -7,7 +7,8 @@ import './imports/publications/images';
 import { Accounts } from 'meteor/accounts-base';
 
 Accounts.config({sendVerificationEmail: true, forbidClientAccountCreation: false}); 
-      // very not secure
+
+// very not secure
 Meteor.startup(() => {
     ServiceConfiguration.configurations.upsert(
         { service: 'google' },
@@ -19,6 +20,7 @@ Meteor.startup(() => {
             }
         }
     );
+   process.env.MAIL_URL = 'smtp://sandboxff74ed144c154ecf832508ba9c4b9d08.mailgun.org:mpkfaa123@smtp.mailgun.org:456';
 });
 Meteor.methods({
   'chargeCard': function(stripeToken, amount) {
@@ -32,6 +34,12 @@ Meteor.methods({
     }, function(err, charge) {
       console.log(err, charge);
     });
+  },
+  'sendVerificationLink':function() {
+    let userId = Meteor.userId();
+    if ( userId ) {
+      return Accounts.sendVerificationEmail( userId );
+    }
   }
 });
 // Meteor.startup(() => {
@@ -45,9 +53,6 @@ Meteor.methods({
 //             }
 //         }
 //     );
-// });
-// Meteor.startup(function () {
-//   process.env.MAIL_URL = 'smtp://postmaster@sandboxff74ed144c154ecf832508ba9c4b9d08.mailgun.org:mpkfaa123@smtp.mailgun.org:456';
 // });
 
 // Meteor.startup(() => {

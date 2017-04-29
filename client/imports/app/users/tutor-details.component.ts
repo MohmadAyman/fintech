@@ -22,12 +22,16 @@ import { Class_ } from  '../../../../both/models/class.model';
 import { Tutors } from '../../../../both/collections/tutors.collection';
 import { Tutor } from  '../../../../both/models/tutor.model';
 
+import { Accounts } from 'meteor/accounts-base';
+
 import style from './tutor-details.component.scss';
 import template from './tutor-details.component.html';
 
 import {IMyOptions} from 'mydatepicker';
 
 Meteor.startup(() => {
+    Accounts.ui.config({requestPermissions:{google:['https://www.googleapis.com/auth/calendar']}, forceApprovalPrompt: {google: true}, requestOfflineToken: {google: true}});
+
     Stripe.setPublishableKey(Meteor.settings.public.stripe.livePublishableKey);
     var handler = StripeCheckout.configure({
       key: Meteor.settings.public.stripe.testPublishableKey,
@@ -94,6 +98,8 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   payment_form_2: FormGroup;
   submitted: boolean = false;
 
+  g_calendar: boolean=false;
+
   // cc
   cardNumber: string;
   expiryMonth: string;
@@ -118,8 +124,8 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     private model: Object = { date: { year: 2018, month: 10, day: 9 } };
   
   ngOnInit() {
-    declare var gapi: any;
-    console.log(gapi);
+    // declare var gapi: any;
+    // console.log(gapi);
 
 
     console.log(Meteor.userId());
@@ -154,7 +160,6 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     });
 
   this.tutorSub = MeteorObservable.subscribe('tutors').subscribe(() => {
-
     this.tutor=Tutors.findOne(this.tutorId);
     this.tutorAsUserId=this.tutor.userId;
     this.tutorSchedule=this.tutor.times;
@@ -164,9 +169,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     let utc1 = Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
     let utc2 = Date.UTC(this.tutor.lastUpdateDate.getFullYear(), this.tutor.lastUpdateDate.getMonth(), this.tutor.lastUpdateDate.getDate());
     let last_update_diff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
-    // console.log(last_update_diff);
-    // console.log(this.tutorSchedule);
-    
+
     for (var i = 0; i < last_update_diff; i++) {
         for(var j = 0; j < 24; j++) {
           this.colorsSched[i][j]='blue';
@@ -193,9 +196,6 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
       this.mailtoTutor="mailto:"+ this.tutor_user_email;
   });
     
-  this.reqSub = MeteorObservable.subscribe('requests').subscribe(() => {
-      this.requests=Requests.find();
-  });
     
     //TODO only find classes that this tutor do 34064745
     this.classesSub = MeteorObservable.subscribe('classes').subscribe(() => {
@@ -243,7 +243,6 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     }
   }
 
-
   CheckoutFn():void{
     if (this.payment_form.valid) {
       console.log('payment form valid')
@@ -270,9 +269,9 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     console.log(this.slot);
     console.log(this.tutorSchedule)
     this.tutorSchedule[this.day][this.slot]=2;
-    Tutors.update(this.tutorId, {
-              $set:{times: this.tutorSchedule }
-          });
+    // Tutors.update(this.tutorId, {
+    //           $set:{times: this.tutorSchedule }
+    //       });
     this.checkout=true;
   }
 
@@ -313,6 +312,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
             tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
             window.location.href = '/thanks';
         }
+      this.g_calendar=true;
     }
 
   addToCalendnaer():void{
@@ -333,7 +333,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
         'dateTime': this.today_show.toISOString(),
         'timeZone': 'America/Los_Angeles'},
       'end':{
-        'dateTime': '2017-07-28T17:00:00-07:00',
+        'dateTime': this.today_show.toISOString(),
         'timeZone': 'America/Los_Angeles'}
       };
     GoogleApi.post('calendar/v3/calendars/primary/events', { data: event },function (error, result){
@@ -375,7 +375,6 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.reqSub.unsubscribe();
     this.classesSub.unsubscribe();
     this.paramsSub.unsubscribe();
     this.tutorSub.unsubscribe();

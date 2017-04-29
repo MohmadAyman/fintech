@@ -5,12 +5,14 @@ export interface Tutor extends CollectionObject{
   name: string;
   hourly_rating: number;
   language: string;
+  users_ratings_avg?: number;
   classesIds?: string[];
   available_times?: Schedule[];
   lastUpdateDate?: Date;
   times?: number[];
   images?: string[];
   creditCardNumber?: string;
+  createdAt?: Date;
 }
 
 interface Schedule {
