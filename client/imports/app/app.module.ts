@@ -21,8 +21,6 @@ import { CreditCardDirectivesModule } from 'ng2-cc-library'
 
 import { Ng2FileInputModule } from 'ng2-file-input'; // <-- import the module
 import { MyDatePickerModule } from 'mydatepicker';
-import { sw } from 'sweetalert2'
-
 
 import {MdGridListModule} from '@angular2-material/grid-list';
 import { MdButtonToggleModule } from "@angular2-material/button-toggle";
