@@ -1,6 +1,10 @@
+<div *ngIf="loggedIn">
+       <div class="container">
+			<div class="row main">
+ 
 <div *ngIf="!checkout">
-  <div class="col">
-  <div *ngIf="tutor" style="margin-left:2%;margin-right:auto;margin-top:2%;margin-bottom:2%">
+		
+  <!--<div *ngIf="tutor" style="margin-left:2%;margin-right:auto;margin-top:2%;margin-bottom:2%">
     <img class="img-rounded" *ngIf="tutor.images && tutor.images.length > 0" [src]="tutor | displayMainImage">
 
   <div>
@@ -12,21 +16,31 @@
     <br>
   </div>
 
-  </div>
-  </div>
-    <!--<ul>
-    <li*ngFor="let class of tutorClasses| async">
-          <ul>
-          <a [routerLink]="['/class', class._id]">{{class.name}}</a>
-          <p>{{class.language}}</p>
-          <div *ngIf="class.active">
-            <p>Class is Currently Active</p>
-          </div>
-          </li>
-        </ul>
-    </li>
-    </ul>-->
-
+  </div>-->
+            <div class="container">
+                    <div class="row bs-wizard" style="border-bottom:0;">
+                        <div class="col-xs-4 bs-wizard-step active">
+                        <div class="text-center bs-wizard-stepnum">Step 1</div>
+                        <div class="progress"><div class="progress-bar"></div></div>
+                        <a class="bs-wizard-dot"></a>
+                        <div class="bs-wizard-info text-center">Schedule class.</div>
+                        </div>
+                        
+                        <div class="col-xs-4 bs-wizard-step disabled">
+                        <div class="text-center bs-wizard-stepnum">Step 2</div>
+                        <div class="progress"><div class="progress-bar"></div></div>
+                        <a class="bs-wizard-dot"></a>
+                        <div class="bs-wizard-info text-center">Checkout.</div>
+                        </div>
+                        
+                        <div class="col-xs-3 bs-wizard-step disabled">
+                        <div class="text-center bs-wizard-stepnum">Step 3</div>
+                        <div class="progress"><div class="progress-bar"></div></div>
+                        <a class="bs-wizard-dot"></a>
+                        <div class="bs-wizard-info text-center">Review.</div>
+                        </div>
+                    </div>
+        </div>
 <br>
  Select day:
 <br>
@@ -133,20 +147,44 @@
 
 <!--<div *ngIf="step3">-->
     <br>
-    <div style="margin-left:10%;display:block;">
-      <input type="text" [(ngModel)]="user_skype_email"> Enter your skype Email </input>
-      <br>
+    
+    <div class="form-group">
+        <input type="text" [(ngModel)]="user_skype_email" class="form-control" name="email" id="email"  placeholder="Enter your Skype username"/>
       <small> Your email will only be shared with the tutor you register with</small>
-      <br>
     </div>
 <!--</div>-->
+<div class="form-group">
+        <button type="button" style="margin-left:auto;margin-right:auto" (click)="GoToCheckOut()" align-center class="btn btn-success">Book class</button>
+    </div>
 
-
-<button type="button" style="margin-left:auto;margin-right:auto" (click)="GoToCheckOut()" align-center class="btn btn-success">Book class</button>
 </div>
 
 
-<div *ngIf='checkout && !g_calendar'>
+<div *ngIf='checkout'>
+            <div class="container">
+                    <div class="row bs-wizard" style="border-bottom:0;">
+                        <div class="col-xs-4 bs-wizard-step complete">
+                        <div class="text-center bs-wizard-stepnum">Step 1</div>
+                        <div class="progress"><div class="progress-bar"></div></div>
+                        <a class="bs-wizard-dot"></a>
+                        <div class="bs-wizard-info text-center">Schedule.</div>
+                        </div>
+                        
+                        <div class="col-xs-4 bs-wizard-step active"><!-- complete -->
+                        <div class="text-center bs-wizard-stepnum">Step 2</div>
+                        <div class="progress"><div class="progress-bar"></div></div>
+                        <a class="bs-wizard-dot"></a>
+                        <div class="bs-wizard-info text-center">Checkout.</div>
+                        </div>
+                        
+                        <div class="col-xs-4 bs-wizard-step disabled"><!-- complete -->
+                        <div class="text-center bs-wizard-stepnum">Step 3</div>
+                        <div class="progress"><div class="progress-bar"></div></div>
+                        <a class="bs-wizard-dot"></a>
+                        <div class="bs-wizard-info text-center">Review.</div>
+                        </div>
+                    </div>
+
     <form #fg="ngForm" [formGroup]="payment_form_2" (ngSubmit)="onSubmit()" novalidate>
           <div class="form-group">
             <label for="cc-number" class="control-label">Card number formatting <small class="text-muted">[<span class="cc-brand"></span>]</small></label>
@@ -172,4 +210,11 @@
 </div>
 <div *ngIf="g_calendar">
   <button style="margin-top:10%;margin-left:10%;" (click)="addToCalendnaer()">add to callender</button>
+</div>
+</div>
+<div *ngIf="!loggedIn">
+        <a style="margin-top:5%" [routerLink]="['/login']">Login</a>
+</div>
+    		</div>
+</div>
 </div>

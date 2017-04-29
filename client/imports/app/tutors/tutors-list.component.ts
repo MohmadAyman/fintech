@@ -21,6 +21,7 @@ import style from './tutors-list.component.scss';
 export class TutorsListComponent {
   tutors: Observable<Tutor[]>;
   t : Tutor;
+  loggedIn: boolean=true;
   tutorSub: Subscription;
   imagesSubs: Subscription;
  

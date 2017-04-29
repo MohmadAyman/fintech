@@ -63,8 +63,7 @@ Meteor.startup(() => {
 })
 @InjectUser('user')
 export class TutorDetailsComponentUser implements OnInit, OnDestroy {
-  // gapi: any;
-
+  loggedIn:boolean=true;
   user_skype_email: string;
   today: Date = new Date();
   today_show: Date = new Date();
@@ -124,8 +123,11 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     private model: Object = { date: { year: 2018, month: 10, day: 9 } };
   
   ngOnInit() {
-    // declare var gapi: any;
-    // console.log(gapi);
+
+     if(!Meteor.userId()){
+        this.loggedIn=false;
+          Bert.alert( 'You need to be logged in to view this page', 'danger', 'fixed-bottom' );
+     }
 
 
     console.log(Meteor.userId());
