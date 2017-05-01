@@ -18,7 +18,12 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     if(Meteor.userId()){
-      window.location.href = '/';
+      Bert.alert( 'You are already signedin, redirecting', 'danger' );
+      setTimeout(() => 
+      {
+          this.router.navigate(['/']);
+      },
+      2000);
     }    
     this.signupForm = this.formBuilder.group({
       email: ['', Validators.required],

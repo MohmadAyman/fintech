@@ -51,10 +51,12 @@ export class LoginComponent implements OnInit {
           this.tutorSub.subscribe(() => {
             this.tutor = Tutors.findOne({userId:{$eq:Meteor.userId()}});
             if(this.tutor){
-                window.location.href = '/tutors/'+this.tutor._id;
+                this.router.navigate(['/tutors/'+this.tutor._id]);
+                console.log('jklkj');
             }
             else{
-              window.location.href = '/tutors';
+              console.log('jkl');
+              this.router.navigate(['/tutors']);
             }
           });
   
@@ -80,12 +82,14 @@ export class LoginComponent implements OnInit {
         }, (error) => {
           if (error) {
             Session.set('errorMessage', error.reason || 'Unknown error');
+          }else{
+              this.router.navigate(['/tutors']);
           }
         });
  
  }
   ngOnDestroy() {
-    if(this.subscribed)
-      this.tutorSub.unsubscribe();
+  //   if(this.subscribed)
+  //     this.tutorSub.unsubscribe();
   }
 }

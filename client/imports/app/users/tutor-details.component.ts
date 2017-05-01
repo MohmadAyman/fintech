@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Meteor } from 'meteor/meteor';
 import { MeteorObservable } from 'meteor-rxjs';
 import { InjectUser } from "angular2-meteor-accounts-ui";
-import {ROUTER_DIRECTIVES, Router, Location} from "angular2/router";
+import {ROUTER_DIRECTIVES, Location} from "angular2/router";
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreditCardValidator } from 'ng2-cc-library';
 
@@ -106,7 +106,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   cvc: string;
 
   constructor(
-    private route: ActivatedRoute,
+    private route: Router,
     private formBuilder: FormBuilder
   ) {}
 
@@ -312,7 +312,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
         //add the user skype user name to the class
           Classes.insert(Object.assign({ userId: Meteor.userId(),
             tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
-            window.location.href = '/thanks';
+            this.router.navigate(['/thanks']);
         }
       this.g_calendar=true;
     }
