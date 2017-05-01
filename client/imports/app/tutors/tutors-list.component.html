@@ -65,7 +65,7 @@
                             <tr *ngFor="let tutor of tutors| async">
                                 <td>
                                     <img *ngIf="tutor.images && tutor.images.length > 0" [src]="tutor | displayMainImage" alt="">
-                                    <a href="#" class="user-link">Full name 3 <!--{{tutor.name}}--> </a>
+                                    <a href="#" class="user-link">{{tutor.name}} </a>
                                     <span class="user-subhead">Member</span>
                                 </td>
                                 <td>
@@ -78,7 +78,7 @@
                                         <a href="#"><span class="fa fa-star-o"></span></a>
                                     </p>
                               </td>
-                                <td>2013/08/12 <!--{{tutor.createdAt}}--> </td>
+                                <td>{{tutor.createdAt}} </td>
                                 <td class="text-center">
                                     <span class="label label-danger">inactive</span>
                                 </td>
