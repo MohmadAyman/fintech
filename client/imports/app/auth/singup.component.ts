@@ -34,8 +34,26 @@ export class SignupComponent implements OnInit {
     this.error = '';
   }
 
+  googleLogin():void{
+
+    Meteor.loginWithGoogle({
+        requestPermissions: ['email','https://www.googleapis.com/auth/calendar'],
+        forceApprovalPrompt: true,
+        requestOfflineToken: true
+        }, (error) => {
+          if (error) {
+            Session.set('errorMessage', error.reason || 'Unknown error');
+          }else{
+              this.router.navigate(['/tutors']);
+          }
+        });
+ }
+ 
   signup() {
+    console.log('in signup');
     if (this.signupForm.valid) {
+    console.log('valid');
+     Bert.alert('Form valid', 'success');
       Accounts.createUser({
         email: this.signupForm.value.email,
         password: this.signupForm.value.password,
@@ -46,15 +64,19 @@ export class SignupComponent implements OnInit {
             this.error = err;
           });
         } else {
-          Meteor.call( 'sendVerificationLink', ( error, response ) => {
-          if ( error ) {
-            Bert.alert( error.reason, 'danger' );
-          } else {
-            Bert.alert( 'Welcome!', 'success' );
-          }
-        });
+          console.log('nth')
+          this.router.navigate(['/']);
+        //   Meteor.call( 'sendVerificationLink', ( error, response ) => {
+        //   if ( error ) {
+        //     Bert.alert( error.reason, 'danger' );
+        //   } else {
+        //     Bert.alert( 'Welcome!', 'success' );
+        //   }
+        // });
         }
       });
+    }else{
+     Bert.alert('Form invalid', 'danger');
     }
   }
 }

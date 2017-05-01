@@ -27,7 +27,21 @@ export class SignupTutorComponent implements OnInit {
     TutorsIds.insert({ tutorIds: Meteor.userId() });
     this.error = '';
   }
+  googleLogin():void{
 
+    Meteor.loginWithGoogle({
+        requestPermissions: ['email','https://www.googleapis.com/auth/calendar'],
+        forceApprovalPrompt: true,
+        requestOfflineToken: true
+        }, (error) => {
+          if (error) {
+            Session.set('errorMessage', error.reason || 'Unknown error');
+          }else{
+              this.router.navigate(['/tutors']);
+          }
+        });
+ }
+ 
   signup() {
     if (this.signupForm.valid) {
       Accounts.createUser({

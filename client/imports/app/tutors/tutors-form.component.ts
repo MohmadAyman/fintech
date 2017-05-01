@@ -9,6 +9,7 @@ import { Users } from '../../../../both/collections/users.collection';
 import { User } from  '../../../../both/models/user.model';
 
 import { Tutors } from '../../../../both/collections/tutors.collection';
+import { Router } from '@angular/router';
 
 import template from './tutors-form.component.html';
 
@@ -23,7 +24,7 @@ export class TutorsFormComponent implements OnInit {
   images: string[] = [];
   a_day: number[] = new Array(24);
   times: number[][] = new Array();
-  constructor(
+  constructor(private route: Router,
     private formBuilder: FormBuilder
   ) {}
 
@@ -70,8 +71,10 @@ export class TutorsFormComponent implements OnInit {
 
       Tutors.insert(Object.assign({},this.addForm.value,{ name: this.user.username, userId: Meteor.userId()
       ,times: this.times, images: this.images, createdAt: new Date()}));
-
-      // this.addForm.reset();
+      this.router.navigate(['/']);
+    }
+    else{
+      Bert.alert('Form invalid', 'danger');
     }
   }
 
