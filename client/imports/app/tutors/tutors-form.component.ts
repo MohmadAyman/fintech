@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Meteor } from 'meteor/meteor';
 import { CreditCardValidator } from 'ng2-cc-library';
+import { InjectUser } from "angular2-meteor-accounts-ui";
 
 // import { AccountsModule } from 'angular2-meteor-accounts-ui';
 
@@ -17,7 +18,7 @@ import template from './tutors-form.component.html';
   selector: 'tutors-form',
   template
 })
-
+@InjectUser('user')
 export class TutorsFormComponent implements OnInit {
   addForm: FormGroup;
   user: User;
@@ -29,8 +30,9 @@ export class TutorsFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(Meteor.userId());
     if(Meteor.userId()){
-      this.user = Users.findOne(this.Meteor.userId());
+      this.user = Users.findOne(Meteor.userId());
     }
     for (var i = 0; i < 24; i++) {
         this.a_day[i]=0;
@@ -40,7 +42,6 @@ export class TutorsFormComponent implements OnInit {
     }
   console.log(this.times);
     this.addForm = this.formBuilder.group({
-      // name: ['', Validators.required],
       hourly_rating: ['', Validators.required],
       language: ['', Validators.required],
       creditCard: ['', [<any>CreditCardValidator.validateCCNumber]]
@@ -49,16 +50,8 @@ export class TutorsFormComponent implements OnInit {
  
   onImage(imageId: string) {
     this.images.push(imageId);
-    console.log(imageId);
+    // console.log(imageId);
   }
-
-  // addTutor(): void {
-  //   if (this.addForm.valid) {
-  //     Tutors.insert(this.addForm.value);
- 
-  //     this.addForm.reset();
-  //   }
-  // }
 
   addTutor(): void {
     if (!Meteor.userId()) {
@@ -69,8 +62,8 @@ export class TutorsFormComponent implements OnInit {
     if (this.addForm.valid) {
       console.log(this.times);
 
-      Tutors.insert(Object.assign({},this.addForm.value,{ name: this.user.username, userId: Meteor.userId()
-      ,times: this.times, images: this.images, createdAt: new Date()}));
+      Tutors.insert(Object.assign({},this.addForm.value,{ userId:Meteor.userId(), name: this.user.username ,times: this.times, images: this.images, createdAt: new Date()}));
+      Bert.alert('You are now a tutor', 'success');
       this.router.navigate(['/']);
     }
     else{
