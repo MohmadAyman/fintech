@@ -22,6 +22,9 @@ import template from './tutors-form.component.html';
 export class TutorsFormComponent implements OnInit {
   addForm: FormGroup;
   user: User;
+  submitted: boolean = false;
+  step1: boolean=true;
+
   images: string[] = [];
   a_day: number[] = new Array(24);
   times: number[][] = new Array();
@@ -44,7 +47,10 @@ export class TutorsFormComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       hourly_rating: ['', Validators.required],
       language: ['', Validators.required],
-      creditCard: ['', [<any>CreditCardValidator.validateCCNumber]]
+      creditCard: ['', [<any>CreditCardValidator.validateCCNumber]],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      username: ['', Validators.required]
     });
   }
  
@@ -54,21 +60,39 @@ export class TutorsFormComponent implements OnInit {
   }
 
   addTutor(): void {
-    if (!Meteor.userId()) {
-      alert('login first to be able to register as a Tutor');
-      return;
-    }
+   this.submitted = true;
+    console.log(Meteor.userId());
+    
+      if (this.addForm.valid) {
+          Accounts.createUser({
+            email: this.addForm.value.email,
+            password: this.addForm.value.password,
+            username: this.addForm.value.username
+          }, (err) => {
+            if (err) {
+              this.zone.run(() => {
+                this.error = err;
+              });
+            } else {
+              console.log(Meteor.userId())
 
-    if (this.addForm.valid) {
-      console.log(this.times);
-
-      Tutors.insert(Object.assign({},this.addForm.value,{ userId:Meteor.userId(), name: this.user.username ,times: this.times, images: this.images, createdAt: new Date()}));
-      Bert.alert('You are now a tutor', 'success');
-      this.router.navigate(['/']);
-    }
-    else{
-      Bert.alert('Form invalid', 'danger');
-    }
+              Tutors.insert(Object.assign({},this.addForm.value,{ userId:Meteor.userId(), name: this.user.username ,times: this.times, images: this.images, createdAt: new Date()}));
+              Bert.alert('You are now a tutor','success');
+              this.route.navigate(['/']);
+              // this.router.navigate(['/']);
+            //   Meteor.call( 'sendVerificationLink', ( error, response ) => {
+            //   if ( error ) {
+            //     Bert.alert( error.reason, 'danger' );
+            //   } else {
+            //     Bert.alert( 'Welcome!', 'success' );
+            //   }
+            // });
+            }
+          });
+      }
+      else{
+        Bert.alert('Form invalid','danger');
+      }
   }
 
 //   onImage(imageId: string) {

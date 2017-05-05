@@ -2,31 +2,38 @@ import {Component, OnInit, NgZone} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Accounts } from 'meteor/accounts-base';
-import { TutorsIds } from '../../../../both/collections/tutors-ids.collection';
-import template from './signup.component.html';
 import { Meteor } from 'meteor/meteor';
 
+import template from './signup-tutor.component.html';
+
 @Component({
-  selector: 'signup',
+  selector: 'signupTutor',
   template
 })
 export class SignupTutorComponent implements OnInit {
   signupForm: FormGroup;
   error: string;
-  title: string;
 
   constructor(private router: Router, private zone: NgZone, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.title = 'Signup tutor';
+    if(Meteor.userId()){
+      Bert.alert( 'You are already signedin, redirecting', 'danger' );
+      setTimeout(() => 
+      {
+          this.router.navigate(['/']);
+      },
+      2000);
+    }    
     this.signupForm = this.formBuilder.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      username: ['', Validators.required]
     });
 
-    TutorsIds.insert({ tutorIds: Meteor.userId() });
     this.error = '';
   }
+
   googleLogin():void{
 
     Meteor.loginWithGoogle({
@@ -43,19 +50,34 @@ export class SignupTutorComponent implements OnInit {
  }
  
   signup() {
+    console.log('in signup');
     if (this.signupForm.valid) {
+    console.log('valid');
+     Bert.alert('Form valid', 'success');
       Accounts.createUser({
         email: this.signupForm.value.email,
-        password: this.signupForm.value.password
+        password: this.signupForm.value.password,
+        username: this.signupForm.value.username
       }, (err) => {
         if (err) {
           this.zone.run(() => {
             this.error = err;
           });
         } else {
-          this.router.navigate(['/']);
-        }
+          console.log('nth')
+          console.log(Meteor.userId())
+              //   Meteor.call( 'sendVerificationLink', ( error, response ) => {
+        //   if ( error ) {
+        //     Bert.alert( error.reason, 'danger' );
+        //   } else {
+        //     Bert.alert( 'Welcome!', 'success' );
+        //   }
+        // });
+      }
+
       });
+    }else{
+     Bert.alert('Form invalid', 'danger');
     }
   }
 }

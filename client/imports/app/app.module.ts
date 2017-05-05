@@ -50,7 +50,17 @@ import { HomeComponent } from './home.component';
     MdListModule.forRoot(),
     MdButtonToggleModule.forRoot(),
     MdGridListModule.forRoot(),
-    Ng2FileInputModule.forRoot(),
+    Ng2FileInputModule.forRoot({
+         dropText:"Drop file here",
+         browseText:"Browse",
+         removeText:"Remove",
+         invalidFileText:"You have picked an invalid or disallowed file.",
+         invalidFileTimeout:8000,
+         removable:true,
+         multiple:false,
+         showPreviews:false,
+         extensions:['jpg'],
+      }),
     MyDatePickerModule,
     CreditCardDirectivesModule
     // ImageUploadModule.forRoot()

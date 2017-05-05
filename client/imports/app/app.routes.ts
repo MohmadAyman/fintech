@@ -8,6 +8,8 @@ import { MyClassesListComponent } from './tutors/classes-list.component';
 import { ClassDetailsComponent } from './tutors/class-details.component';
 import { TutorDetailsComponent } from './tutors/tutor-details.component';
 import {LoginComponent} from "./auth/login.component";
+import {LoginTComponent} from "./auth/loginT.component";
+
 import {SignupComponent} from "./auth/singup.component";
 import {RecoverComponent} from "./auth/recover.component";
 import { SignupTutorComponent } from "./auth/singup-tutor.component";
@@ -35,6 +37,7 @@ export const routes: Route[] = [
   { path: 'one2one', component: VideoOneToOneComponent},
   { path: 'avilable-classes', component: AvilableClasses},
   { path: 'tutors/:tutorId', component: TutorDetailsComponentUser},
-  { path: 'tutor/:tutorId', component: TutorDetailsComponent}
+  { path: 'tutor/:tutorId', component: TutorDetailsComponent},
+  { path: 'tutorLogin', component: LoginTComponent}
   // { path: 'stripe', component: StripeFormComponent }
  ];

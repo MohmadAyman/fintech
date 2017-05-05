@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreditCardValidator } from 'ng2-cc-library';
 
 import { Requests } from '../../../../both/collections/requests.collection';
+import { ActivatedRoute } from '@angular/router';
 import { Request } from '../../../../both/models/request.model';
 
 import 'rxjs/add/operator/map';
@@ -39,23 +40,6 @@ Meteor.startup(() => {
     });
 });
  
-
-// ccNum = 12223456712345;
-// cvc = 123;
-// expMo = 11;
-// expYr = 18;
-
-// Stripe.card.createToken({
-// 	number: ccNum,
-// 	cvc: cvc,
-// 	exp_month: expMo,
-// 	exp_year: expYr,
-// }, function(status, response) {
-// 	stripeToken = response.id;
-// 	Meteor.call('chargeCard', stripeToken);
-//   console.log('charged');
-// });
-
 @Component({
   selector: 'tutor-details',
   template,
@@ -106,8 +90,10 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   cvc: string;
 
   constructor(
-    private route: Router,
-    private formBuilder: FormBuilder
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
+
   ) {}
 
   private myDatePickerOptions: IMyOptions = {
@@ -343,36 +329,6 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
       console.log(result);
     });
       
-      
-    // GoogleApi.get('calendar/v3/calendars/primary/events', {
-    //       user: user,
-    //       params: {
-    //         'calendarId': 'primary',
-    //         'timeMin': new Date().toISOString(),
-    //         // 'timeMax': new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
-    //         'showDeleted': false,
-    //         'singleEvents': true,
-    //         'orderBy': 'startTime',
-    //         'access_type': 'offline'
-    //       }
-    //     }, function (error, result) {
-    //       console.log(result);
-    //       console.log(error);
-    //       if (result) {
-    //         console.log(result);
-    //           Events.insert({
-    //             startDate: this.today.toDate(),
-    //             endDate: this.today.toDate()+1,
-    //             calendar: 'primary',
-    //             title: event.summary,
-    //             location: 'poblacion',
-    //             description: 'texto'
-    //           });
-    //       }
-    //       if(error){
-    //         console.error(error);
-    //       }
-    //     });
   }
 
 

@@ -1,0 +1,59 @@
+		<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Tutor Sign in</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					
+          <form class="form-horizontal" [formGroup]="loginForm" #f="ngForm" (ngSubmit)="login()">
+          <div class="form-group ">
+            <button type="button" (click)="googleLogin()" class="btn btn-danger btn-sm btn-block login-button">Signin with Google</button>
+          </div>
+						
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" formControlName="email" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" formControlName="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="form-group ">
+							<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
+						</div>
+
+            <div [hidden]="error == ''">
+              <md-toolbar class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+                <p class="md-body-1">{{ error }}</p>
+              </md-toolbar>
+            </div>
+       
+        		<div>
+              <a [routerLink]="['/newtutor']">Need a tutor account?</a>
+            </div>
+       
+            <div>
+              <a [routerLink]="['/recover']">Forgot password?</a>
+            </div>
+        
+					</form>
+				</div>
+			</div>
+		</div>

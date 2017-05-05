@@ -56,7 +56,7 @@
                                 <th><span>Tutor</span></th>
                                 <th><span>Ratings</span></th>
                                 <th><span>Joined</span></th>
-                                <th class="text-center"><span>Status</span></th>
+                                <th class="text-center"><span>$/hour</span></th>
                                 <th><span>Contact</span></th>
                                 <th>&nbsp;</th>
                                 </tr>
@@ -65,7 +65,7 @@
                             <tr *ngFor="let tutor of tutors| async">
                                 <td>
                                     <img *ngIf="tutor.images && tutor.images.length > 0" [src]="tutor | displayMainImage" alt="">
-                                    <a href="#" class="user-link">{{tutor.name}} </a>
+                                    <a class="user-link">{{tutor.name}} </a>
                                     <span class="user-subhead">Member</span>
                                 </td>
                                 <td>
@@ -80,7 +80,7 @@
                               </td>
                                 <td>{{tutor.createdAt}} </td>
                                 <td class="text-center">
-                                    <span class="label label-danger">inactive</span>
+                                    <span class="label label-success">{{tutor.hourly_rating}}$</span>
                                 </td>
                                 <td>
                                     <a href="#">Send a message</a>

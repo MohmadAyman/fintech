@@ -207,7 +207,7 @@ export class TutorDetailsComponent implements OnInit, OnDestroy {
               $set:{times: this.tutorSchedule
                 , lastUpdateDate: this.today }
           });
-    alert("You've succefuly added free time slots to your callender");
+    Bert.alert("You've succefuly added free time slots to your callender",'success');
     window.location.reload();
   }
 

@@ -9,13 +9,13 @@ import { Tutors } from '../../../../both/collections/tutors.collection';
 import { Tutor } from  '../../../../both/models/tutor.model';
 // import { Accounts } from 'meteor/accounts-base';
 
-import template from './login.component.html';
+import template from './loginT.component.html';
 
 @Component({
   selector: 'login',
   template
 })
-export class LoginComponent implements OnInit {
+export class LoginTComponent implements OnInit {
   loginForm: FormGroup;
   error: string;
   tutorId: string;
@@ -26,16 +26,15 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private zone: NgZone, private formBuilder: FormBuilder) {}
 
 
-  ngOnInit() {   
-    
-    // Accounts.ui.config({requestPermissions:{google:['https://www.googleapis.com/auth/calendar']}, forceApprovalPrompt: {google: true}, requestOfflineToken: {google: true}});
-
+  ngOnInit() {
+    // Bert.defaults = {
+    //   hideDelay: 3500,
+    // };   
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
     this.tutorSub = MeteorObservable.subscribe('tutors');
-
     this.error = '';
   }
   login() {
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit {
                 console.log('jklkj');
             }
             else{
-              console.log('jkl');
+              Bert.alert('you are a user not a tutor','danger');
               this.router.navigate(['/tutors']);
             }
           });
@@ -84,9 +83,9 @@ export class LoginComponent implements OnInit {
             Session.set('errorMessage', error.reason || 'Unknown error');
           }else{
               this.router.navigate(['/tutors']);
-              window.location.reload();
           }
         });
+ 
  }
   ngOnDestroy() {
   //   if(this.subscribed)
