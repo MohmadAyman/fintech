@@ -61,9 +61,226 @@
 
   Make your avilable hours blue:
 
-  <div class="row">
 
-  <ul class='circle-container'>
+<table class="table user-list">
+                            <thead>
+                                <tr>
+                                <th><span>1</span></th>
+                                <!--<th><span>Ratings</span></th>-->
+                                <th><span>2</span></th>
+                                <th class="text-center"><span>3</span></th>
+                                <th><span>4</span></th>
+                                <th>5</th>
+
+                                <th>6</th>
+                                </tr>
+
+
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>                       
+              
+                               <div  (click)="toggleSlot(1)" class="circle-container btn">
+                                        <div class="outer-ring"></div>
+                                        <div class="circle">
+                                                <div class="front">
+                                                        <p>START</p>
+                                                </div>
+                                                <div *ngIf="colorsSched[day][5]=='red'" class="back">
+                                                        <p style="color:green;" >End</p>
+                                                </div>
+                                                <div *ngIf="!colorsSched[day][5]=='red'" class="back">
+                                                        <p>EEE</p>
+                                                </div>
+                                                
+                                        </div>
+                                </div>
+                                </td>
+                                <td>
+                                <div class="circle-container">
+                                        <div class="outer-ring"></div>
+                                        <div class="circle">
+                                                <div class="front">
+                                                        <p>START</p>
+                                                </div>
+                                                <div class="back">
+                                                        <p>End</p>
+                                                </div>
+                                        </div>
+                                </div>
+                              </td>
+                                <td>
+                                <div class="circle-container">
+                                        <div class="outer-ring"></div>
+                                        <div class="circle">
+                                                <div class="front">
+                                                        <p>START</p>
+                                                </div>
+                                                <div class="back">
+                                                        <p>End</p>
+                                                </div>
+                                        </div>
+                                </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div></td>
+                                <td>
+     <div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+                           </td>
+                                <td style="width: 20%;">
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+                                </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+  <div class="col">
+
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+<div class="circle-container">
+	<div class="outer-ring"></div>
+	<div class="circle">
+		<div class="front">
+			<p>START</p>
+		</div>
+		<div class="back">
+                        <p>End</p>
+		</div>
+	</div>
+</div>
+
+
+
+  <!--<ul class='circle-container'>
       <li> <button align-items:center [ngStyle]="{'background-color': colorsSched[day][2], 'border-color':colorsSched[day][2]}" style="border-radius: 12px;"  (click)="toggleSlot(2)" type="button" 
               [disabled]="colorsSched[day][2]=='red'">3                       
               </button></li>
@@ -141,7 +358,7 @@
               [disabled]="colorsSched[day][13]=='red'">2                       
               </button></li>
     <li>PM</li>
-  </ul>
+  </ul>-->
   <br>
 </div>
 
@@ -207,6 +424,7 @@
             <div *ngIf="!payment_form_2.controls.cvc.valid" class="alert alert-danger">CVC is required</div>
           </div>
     </form>
+        </div>
 </div>
 <div *ngIf="g_calendar">
   <button style="margin-top:10%;margin-left:10%;" (click)="addToCalendnaer()">Add to Google callender?</button>
