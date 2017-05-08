@@ -60,6 +60,7 @@ jalik:ufs@0.7.4_1
 jalik:ufs-gridfs@0.1.4
 jplack:bootstrap-timepicker@0.2.2
 jquery@1.11.10
+kadira:dochead@1.5.0
 launch-screen@1.1.0
 less@2.6.5
 livedata@1.0.18

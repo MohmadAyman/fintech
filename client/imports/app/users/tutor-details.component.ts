@@ -54,7 +54,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   tutorId: string;
   slot: number;
   color: string[]= new Array(24); 
-  day: number=0;
+  day: number=1;
   tutorAsUserId: string;
   tutor: Tutor;
   paramsSub: Subscription;  
@@ -74,6 +74,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   tutorSchedule: number[][] = new Array();
   colorsSched: string[][] = new Array();
 
+  range_for_disp: number[] = new Array(12);
   amount: number=0;
 
   checkDetails: string[]=new Array(3);
@@ -109,14 +110,13 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     private model: Object = { date: { year: 2018, month: 10, day: 9 } };
   
   ngOnInit() {
-
+    console.log(Meteor.userId());
      if(!Meteor.userId()){
         this.loggedIn=false;
           Bert.alert( 'You need to be logged in to view this page', 'danger', 'fixed-bottom' );
-     }
+          this.router.navigate('/login');
+    }
 
-
-    console.log(Meteor.userId());
     this.imagesSubs = MeteorObservable.subscribe('images').subscribe();
 
     this.payment_form_2 = this.formBuilder.group({
@@ -248,6 +248,10 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
     }
   }
 
+  step1(): void{
+    this.checkout = false;
+  }
+
   GoToCheckOut(): void{
     // if(!this.user_skype_email){
     //   alert('Please enter your skype username so the teatch can contact you :)');
@@ -266,10 +270,12 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
   onSubmit() {
     let success= false;
     let free= true;
-    this.submitted = true;
-    let m = this.payment_form_2.value.expDate[0]+this.payment_form_2.value.expDate[1];
-    let y = this.payment_form_2.value.expDate[5]+this.payment_form_2.value.expDate[6];
     if (this.payment_form_2.valid) {
+        this.submitted = true;
+        let m = this.payment_form_2.value.expDate[0]+this.payment_form_2.value.expDate[1];
+        let y = this.payment_form_2.value.expDate[5]+this.payment_form_2.value.expDate[6];
+
+    Bert.alert('berfore payment','success');
         Stripe.card.createToken({
           number: this.payment_form_2.value.creditCard,
           cvc: this.payment_form_2.value.cvc,
@@ -282,28 +288,34 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
           // Meteor.call('chargeCard', stripeToken, this.amount);
           Meteor.call('chargeCard', stripeToken, 3);
         });
+        Bert.alert('Thanks for booking my class','success');
+        this.router.navigate(['/thanks']);
 
-        let id = Classes.findOne({
-          userId:{
-            $elemMatch:{$eq: Meteor.userId()}
-          }
-        })._id;
+        // let id = Classes.findOne({
+        //   userId:{
+        //     $elemMatch:{$eq: Meteor.userId()}
+        //   }
+        // })._id;
 
-        if(id){
-          free=false;
-        }
+        // console.log(id);
+        // if(id){
+        //   free=false;
+        // }
     }
 
-        if(free||success){
-        //add the user skype user name to the class
-          Classes.insert(Object.assign({ userId: Meteor.userId(),
-            tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
-            this.router.navigate(['/thanks']);
-        }
-      this.g_calendar=true;
+        // if(free||success){
+        // //add the user skype user name to the class
+        //   Classes.insert(Object.assign({ userId: Meteor.userId(),
+        //     tutorId: this.tutorId,startDate: this.today_show, userSkype: this.user_skype_email}));
+        //     this.router.navigate(['/thanks']);
+        // }else{
+        //   Bert.alert('Payment failed, or you are already registered in another classs', 'danger');
+        // }
+      // this.g_calendar=true;
     }
 
-  addToCalendnaer():void{
+  addToCalendnaer():void {
+    
   // let dateString = "2010-08-09 01:02:03"
   // , reggie = /(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/
   // , [, year, month, day, hours, minutes, seconds] = reggie.exec(dateString)

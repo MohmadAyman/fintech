@@ -22,7 +22,7 @@
                         <div class="col-xs-4 bs-wizard-step active">
                         <div class="text-center bs-wizard-stepnum">Step 1</div>
                         <div class="progress"><div class="progress-bar"></div></div>
-                        <a class="bs-wizard-dot"></a>
+                        <a (click)="step1()" class="bs-wizard-dot"></a>
                         <div class="bs-wizard-info text-center">Schedule class.</div>
                         </div>
                         
@@ -63,221 +63,77 @@
 
 
 <table class="table user-list">
-                            <thead>
-                                <tr>
-                                <th><span>1</span></th>
-                                <!--<th><span>Ratings</span></th>-->
-                                <th><span>2</span></th>
-                                <th class="text-center"><span>3</span></th>
-                                <th><span>4</span></th>
-                                <th>5</th>
+        <tbody>
+        <tr>
+        <td *ngFor="let item of range_for_disp; let i=index;">
+        <div (click)="toggleSlot(i)" class="circle-container btn">
+        <div class="outer-ring"></div>
+        <div class="circle">    
+                <div *ngIf="colorsSched[day][i]=='green'">
+                        <div class="front">
+                                <p style="color:green;">{{i+1%12}} AM</p>
+                        </div>
+                        <div class="back">
+                                <p style="color:green;">&#10004;</p>
+                        </div>
+                </div>
+                <div *ngIf="colorsSched[day][i]=='red'">
+                        <div class="front">
+                                <p style="color:red;">{{i+1%12}} AM</p>
+                        </div>
+                        <div class="back">
+                                <p style="color:red;">&#10007;</p>
+                        </div>
+                
+                </div>
+                <div *ngIf="colorsSched[day][i]=='blue'">
+                        <div class="front">
+                                <p style="color:blue;">&#10004; {{i+1%12}} AM</p>
+                        </div>
+                        <div class="back">
+                                <p style="color:blue;">&#10007;</p>
+                        </div>
+                
+                </div>
+        </div>
+        </div>
+        </td>
 
-                                <th>6</th>
-                                </tr>
+        </tr>
+        <tr>
+        <td *ngFor="let item of range_for_disp; let j=index;">
+        <div (click)="toggleSlot(j+12)" class="circle-container btn">
+                <div class="outer-ring"></div>
+                <div class="circle">    
+                <div *ngIf="colorsSched[day][j+12]!='red'">
+                        <div class="front">
+                                <p style="color:green;">{{j+1%12}} PM</p>
+                        </div>
+                        <div *ngIf="colorsSched[day][j+12]=='red'" class="back">
+                                <p style="color:green;">&#10004;</p>
+                        </div>
+                        <div *ngIf="!colorsSched[day][j+12]=='red'" class="back">
+                                <p style="color:red;">&#10007;</p>
+                        </div>
+                </div>
+                <div *ngIf="colorsSched[day][j+12]=='red'">
+                        <div class="front">
+                                <p style="color:red;">{{j+1%12}} PM</p>
+                        </div>
+                        <div class="back">
+                                <p style="color:red;">&#10007;</p>
+                        </div>
+                
+                </div>
+                </div>
+        </div>
+        </td>
 
-
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>                       
-              
-                               <div  (click)="toggleSlot(1)" class="circle-container btn">
-                                        <div class="outer-ring"></div>
-                                        <div class="circle">
-                                                <div class="front">
-                                                        <p>START</p>
-                                                </div>
-                                                <div *ngIf="colorsSched[day][5]=='red'" class="back">
-                                                        <p style="color:green;" >End</p>
-                                                </div>
-                                                <div *ngIf="!colorsSched[day][5]=='red'" class="back">
-                                                        <p>EEE</p>
-                                                </div>
-                                                
-                                        </div>
-                                </div>
-                                </td>
-                                <td>
-                                <div class="circle-container">
-                                        <div class="outer-ring"></div>
-                                        <div class="circle">
-                                                <div class="front">
-                                                        <p>START</p>
-                                                </div>
-                                                <div class="back">
-                                                        <p>End</p>
-                                                </div>
-                                        </div>
-                                </div>
-                              </td>
-                                <td>
-                                <div class="circle-container">
-                                        <div class="outer-ring"></div>
-                                        <div class="circle">
-                                                <div class="front">
-                                                        <p>START</p>
-                                                </div>
-                                                <div class="back">
-                                                        <p>End</p>
-                                                </div>
-                                        </div>
-                                </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div></td>
-                                <td>
-     <div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-                           </td>
-                                <td style="width: 20%;">
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-                                </td>
                                 </tr>
                             </tbody>
                         </table>
 
   <div class="col">
-
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-<div class="circle-container">
-	<div class="outer-ring"></div>
-	<div class="circle">
-		<div class="front">
-			<p>START</p>
-		</div>
-		<div class="back">
-                        <p>End</p>
-		</div>
-	</div>
-</div>
-
 
 
   <!--<ul class='circle-container'>
@@ -426,9 +282,12 @@
     </form>
         </div>
 </div>
+
+<!--Feature incomplete Yet-->
 <div *ngIf="g_calendar">
   <button style="margin-top:10%;margin-left:10%;" (click)="addToCalendnaer()">Add to Google callender?</button>
 </div>
+
 </div>
 <div *ngIf="!loggedIn">
         <a style="margin-top:5%" [routerLink]="['/login']">Login</a>

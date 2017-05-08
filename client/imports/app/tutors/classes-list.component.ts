@@ -17,6 +17,7 @@ import template from './classes-list.component.html';
 })
 export class MyClassesListComponent implements OnInit, OnDestroy {
   classes: Observable<Class_[]>;
+  noclasses: number=0;
   classSub: Subscription;
   requests: Observable<Request[]>;
   reqSub: Subscription;
@@ -35,12 +36,28 @@ export class MyClassesListComponent implements OnInit, OnDestroy {
                 this.is_a_tutor=true;
                 this.classSub = MeteorObservable.subscribe('classes').subscribe(() => {
                     this.classes = Classes.find({tutorId:{$eq:this.tutor._id}});
+                    if(this.classes){
+                      for(let i of this.classes){
+                        this.noclasses=this.noclasses+1;
+                        console.log('+1');
+                      }
+                    }else{
+                      this.noclasses = 0;
+                    }
                 });
               }else{
                 console.log('Not a tutor');
                 this.is_a_user = true;
                 this.classSub = MeteorObservable.subscribe('classes').subscribe(() => {
                     this.classes = Classes.find({userId:{$eq:Meteor.userId()}}).zone();
+                    if(this.classes){
+                      for(let i of this.classes){
+                        this.noclasses=this.noclasses+1;
+                        console.log('+1');
+                      }
+                    }else{
+                      this.noclasses = 0;
+                    }
                 });
               }
             });

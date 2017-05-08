@@ -76,7 +76,8 @@ export class TutorsFormComponent implements OnInit {
             } else {
               console.log(Meteor.userId())
 
-              Tutors.insert(Object.assign({},this.addForm.value,{ userId:Meteor.userId(), name: this.user.username ,times: this.times, images: this.images, createdAt: new Date()}));
+              Tutors.insert(Object.assign({},this.addForm.value,{ userId:Meteor.userId(), name: this.user.username ,times: this.times, 
+                images: this.images, createdAt: new Date(), lastUpdateDate: new Date()}));
               Bert.alert('You are now a tutor','success');
               this.route.navigate(['/']);
               // this.router.navigate(['/']);
