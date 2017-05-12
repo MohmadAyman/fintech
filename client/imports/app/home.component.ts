@@ -26,10 +26,10 @@ export class HomeComponent {
   
   ngOnInit(){
     let title = "ElMohfez, your place to learn Quran online";
-    let metaInfo = {name: "description", 
-      content: "Elmohfez connects Quran teachers with students, It is the best way to learn Quran online with live classes"};
+    // let metaInfo = {name: "description", 
+    //   content: "Elmohfez connects Quran teachers with students, It is the best way to learn Quran online with live classes"};
     DocHead.setTitle(title);  
-    DocHead.addMeta(metaInfo);
+    // DocHead.addMeta(metaInfo);
 
     if(Meteor.userId()){
       this.tutorSub = MeteorObservable.subscribe('tutors').subscribe(() => {

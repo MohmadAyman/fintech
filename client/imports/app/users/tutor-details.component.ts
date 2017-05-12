@@ -275,6 +275,7 @@ export class TutorDetailsComponentUser implements OnInit, OnDestroy {
         let m = this.payment_form_2.value.expDate[0]+this.payment_form_2.value.expDate[1];
         let y = this.payment_form_2.value.expDate[5]+this.payment_form_2.value.expDate[6];
 
+        Bert.alert('berfore payment','success');
         Stripe.card.createToken({
           number: this.payment_form_2.value.creditCard,
           cvc: this.payment_form_2.value.cvc,

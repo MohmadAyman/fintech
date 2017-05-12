@@ -48,6 +48,7 @@ fastclick@1.0.13
 force-ssl@1.0.13
 fortawesome:fontawesome@4.4.0_1
 fourseven:scss@4.5.0
+gadicohen:phantomjs@0.0.2
 geojson-utils@1.0.10
 google@1.1.15
 hot-code-push@1.0.4
