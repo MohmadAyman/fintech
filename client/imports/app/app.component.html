@@ -16,7 +16,7 @@
 
 
 
-    <!--<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+<!--<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -75,61 +75,61 @@
   <li role="presentation"><a href="#">Profile</a></li>
   <li role="presentation"><a href="#">Messages</a></li>
 </ul>-->
-    <!--Intro content-->
-    <!--<div class="full-bg-img flex-center">
+<!--Intro content-->
+<!--<div class="full-bg-img flex-center">
         
     </div>-->
-    <!--/Intro content-->
- 
-     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<!--/Intro content-->
+
+<nav class="navbar navbar-inverse navbar-fixed-top bg-primary" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Home</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a href="/tutors">Tutors</a>
-                    </li>
-                </ul>
+      <a class="navbar-brand" href="#">Home</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#services">Services</a>
+        </li>
+        <li>
+          <a href="/tutors">Tutors</a>
+        </li>
+      </ul>
 
       <ul [hidden]="!user" class="nav navbar-nav navbar-right">
         <li>
-            <a> {{ user | displayName }}</a>
+          <a> {{ user | displayName }}</a>
         </li>
-        
+
         <!--<li><p style="color:aliceblue;">{{ user | displayName }}</p></li>-->
         <li> <a [routerLink]="['/classesList']">Classes  </a></li>
         <li><button type="button" class="navbar-right btn btn-default navbar-btn" (click)="logout()">Logout</button>
         </li>
       </ul>
       <ul [hidden]="user" class="nav navbar-nav navbar-right">
-            <li>  <a [routerLink]="['/login']" class="navbar-right btn ">Student Sign in</a></li>
-            <li>  <a [routerLink]="['/tutorLogin']" class="navbar-right btn ">Tutor Sign in</a></li>
-      </ul>            
-      </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+        <li> <a [routerLink]="['/login']" class="navbar-right btn ">Student Sign in</a></li>
+        <li> <a [routerLink]="['/tutorLogin']" class="navbar-right btn ">Tutor Sign in</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
 
 
-    <router-outlet></router-outlet>
+<router-outlet></router-outlet>
 
 
-        <!-- Footer -->
-        <!--<footer>
+<!-- Footer -->
+<!--<footer>
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; Your Website 2014</p>
@@ -138,4 +138,4 @@
             </div>
         </footer>
       -->
-        <!-- /.row -->
+<!-- /.row -->
