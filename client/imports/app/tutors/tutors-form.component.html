@@ -1,82 +1,95 @@
 <!--<signupTutor></signupTutor>-->
 
 
-		<div class="container">
-			<div class="row main">
-								<div class="main-login main-center">
+<div class="container">
+	<div class="row main">
+		<div class="main-login main-center">
 
-  <!--<form class="form-horizontal" [formGroup]="signupForm" #f="ngForm" (ngSubmit)="signup()">-->
-  <!--        <div class="form-group ">-->
-            <!--<button type="button" (click)="googleLogin()" class="btn btn-danger btn-sm btn-block login-button">Signin with Google</button>
+			<!--<form class="form-horizontal" [formGroup]="signupForm" #f="ngForm" (ngSubmit)="signup()">-->
+			<!--        <div class="form-group ">-->
+			<!--<button type="button" (click)="googleLogin()" class="btn btn-danger btn-sm btn-block login-button">Signin with Google</button>
           </div>-->
-    <form [formGroup]="addForm" (ngSubmit)="addTutor();">
+			<form [formGroup]="addForm" (ngSubmit)="addTutor();">
 
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Your Name</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" formControlName="username" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
-								</div>
-							</div>
+				<div class="form-group">
+					<label for="name" class="cols-sm-2 control-label">Your Name</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+							<input type="text" formControlName="username" class="form-control" name="name" id="name" placeholder="Enter your Name" />
 						</div>
+					</div>
+				</div>
 
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Your Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" formControlName="email" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-								</div>
-							</div>
+				<div class="form-group">
+					<label for="email" class="cols-sm-2 control-label">Your Email</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+							<input type="text" formControlName="email" class="form-control" name="email" id="email" placeholder="Enter your Email" />
 						</div>
+					</div>
+				</div>
 
-						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" formControlName="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-								</div>
-							</div>
+				<div class="form-group">
+					<label for="password" class="cols-sm-2 control-label">Password</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							<input type="password" formControlName="password" class="form-control" name="password" id="password" placeholder="Enter your Password"
+							/>
 						</div>
+					</div>
+				</div>
 
 
-  <div class="form-group">
-    <label for="example-search-input2" class="col-2 col-form-label">Language</label>
-    <div class="col-10">
-      <input formControlName="language" class="form-control" type="text" id="example-search-input2">
-    </div>
-  </div>
+				<div class="form-group">
+					<label for="example-search-input2" class="col-2 col-form-label">Language</label>
+					<div class="col-10">
+						<input formControlName="language" class="form-control" type="text" id="example-search-input2">
+					</div>
+				</div>
 
-  <div class="form-group">
-    <label for="example-search-input1" class="col-2 col-form-label">Rate $/hour</label>
-    <div class="col-10">
-      <input formControlName="hourly_rating" class="form-control" type="text" id="example-search-input1">
-    </div>
-  </div>
+				<div class="form-group">
+					<label for="example-search-input1" class="col-2 col-form-label">Rate $/hour</label>
+					<div class="col-10">
+						<input formControlName="hourly_rating" class="form-control" type="text" id="example-search-input1">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="target" class="cols-sm-2 control-label">Target investment</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+							<input type="text" formControlName="target" class="form-control" name="target" id="target" placeholder="Enter your target investment"
+							/>
+						</div>
+					</div>
+				</div>
 
-<br>
-  <!--How would you like to get paid?-->
-  <!--<small> Please enter Your credit card number </small>-->
-  
-  <div class="form-group">
-    <label for="cc-number" class="col-2 col-form-label">Credit Card number</label>
-    <small class="text-muted">[<span class="cc-brand"></span>]</small>
-    <div class="col-10">
 
-    <input id="cc-number" formControlName="creditCard" type="tel" class="form-control cc-number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" ccNumber>
-    </div>
-  </div>
-  <div class="errors" *ngIf="submitted">
-    <div *ngIf="!addForm.controls.creditCard.valid" class="alert alert-danger">Credit Card is invalid</div>
-  </div>
-   <br>
-  <upload-image (onFile)="onImage($event)"></upload-image>
-<br>
-<button type="submit" align-center class="btn btn-block btn-success">Sign up</button>
-</form>
+				<br>
+				<!--How would you like to get paid?-->
+				<!--<small> Please enter Your credit card number </small>-->
 
-								</div>
-			</div>
+				<div class="form-group">
+					<label for="cc-number" class="col-2 col-form-label">Credit Card number</label>
+					<small class="text-muted">[<span class="cc-brand"></span>]</small>
+					<div class="col-10">
+
+						<input id="cc-number" formControlName="creditCard" type="tel" class="form-control cc-number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••"
+						 ccNumber>
+					</div>
+				</div>
+				<div class="errors" *ngIf="submitted">
+					<div *ngIf="!addForm.controls.creditCard.valid" class="alert alert-danger">Credit Card is invalid</div>
+				</div>
+				<br>
+				<upload-image (onFile)="onImage($event)"></upload-image>
+				<br>
+				<button type="submit" align-center class="btn btn-block btn-success">Sign up</button>
+			</form>
+
 		</div>
+	</div>
+</div>

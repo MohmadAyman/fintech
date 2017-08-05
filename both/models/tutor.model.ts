@@ -1,6 +1,6 @@
-import { CollectionObject } from './collection-object.model';
+import { CollectionObject } from "./collection-object.model";
 
-export interface Tutor extends CollectionObject{
+export interface Tutor extends CollectionObject {
   userId: string;
   name: string;
   hourly_rating: number;
@@ -13,9 +13,14 @@ export interface Tutor extends CollectionObject{
   times?: number[];
   images?: string[];
   creditCardNumber?: string;
+
+  // Startup
+  details?: string;
+  to_do_list?: string[];
+  target?: number;
 }
 
 interface Schedule {
-   startDate: Date;
-   times: string[];
- }
+  startDate: Date;
+  times: string[];
+}

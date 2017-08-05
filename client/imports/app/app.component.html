@@ -1,86 +1,3 @@
-<!--<md-toolbar color="primary" md-scroll-shrink ng-if="true">
-  <a md-button routerLink="/">Quran Tutor</a>
-  <span class="fill-remaining-space"></span>
-  <div [hidden]="user">
-    <a md-button [routerLink]="['/login']" >Login</a>
-    <a md-button [routerLink]="['/signup']">Sign up</a>
-  </div>
-  <div [hidden]="!user">
-   <a md-button [routerLink]="['/classesList']">Your classes</a>  
-
-    
-    <button md-button (click)="logout()">Logout</button>
-  </div>
-  <span>{{ user | displayName }}</span>
-</md-toolbar>-->
-
-
-
-<!--<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="tutors">Tutors</a>
-      </li>
-    </ul>
-
-    <div [hidden]="user">
-      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/login']">Login</button>
-      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/signup']">Sign up</button>
-
-    </div>
-    <div [hidden]="!user">
-        <span style="color:aliceblue;">{{ user | displayName }}</span>
-      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/classesList']">Your Classes</button>
-      <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
-      
-    </div>
-
-     </div>
-</nav>
-
-<br>
-<br>-->
-<!--
-<md-toolbar color="primary">
-  <a routerLink="/" class="toolbar-title">Quran</a>
-  <span class="fill-remaining-space"></span>
-  <div [hidden]="user">
-    <a md-button [routerLink]="['/login']" >Login</a>
-    <a md-button [routerLink]="['/signup']">Sign up</a>
-  </div>
-  <div [hidden]="!user">
-    <span>{{ user | displayName }}</span>
-    <button md-button (click)="logout()">Logout</button>
-  </div>
-</md-toolbar>-->
-
-<!--<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
-</ul>-->
-<!--Intro content-->
-<!--<div class="full-bg-img flex-center">
-        
-    </div>-->
-<!--/Intro content-->
-
 <nav class="navbar navbar-inverse navbar-fixed-top bg-primary" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -115,8 +32,8 @@
         </li>
       </ul>
       <ul [hidden]="user" class="nav navbar-nav navbar-right">
-        <li> <a [routerLink]="['/login']" class="navbar-right btn ">Student Sign in</a></li>
-        <li> <a [routerLink]="['/tutorLogin']" class="navbar-right btn ">Tutor Sign in</a></li>
+        <li> <a [routerLink]="['/login']" class="navbar-right btn ">Startup Sign in</a></li>
+        <li> <a [routerLink]="['/tutorLogin']" class="navbar-right btn ">Investor Sign in</a></li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
